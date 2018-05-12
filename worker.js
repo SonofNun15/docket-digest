@@ -7,39 +7,55 @@ const db = require("./models");
 
 const reader = require('davefeedread');
 const utils = require('daveutils');
-
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {});
 
 const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
-const whenstart = new Date ();
-
-db.DocketList.find().then((list) => {
+const whenstart = new Date();
+db.DocketList.find({}).then((list) => {
+  // console.log("found something");
   let identifiers = list.map(item => item.docket_identifier);
 
-  reader.parseUrl (feed_url, timeOutSecs, function (err, feed) {
+  reader.parseUrl(feed_url, timeOutSecs, function (err, feed) {
     if (err) return console.log(err.message);
+    // console.log(list);
 
     for (let i = 0; i < feed.items.length; i++) {
       let item = feed.items[i];
       let docket_identifier = item.title.split(' ').shift();
-
-      if (!list.includes(docket_identifier)) continue;
+      // console.log(docket_identifier);
+      if (!identifiers.includes(docket_identifier)) continue;
 
       findOrCreateFiling(item);
+      console.log(item.title);
     }
 
-    console.log ("It took " + utils.secondsSince (whenstart) + " seconds to read and parse the feed.");
+    console.log("It took " + utils.secondsSince(whenstart) + " seconds to read and parse the feed.");
   });
-});
+}).catch(err => console.log(err));
 
-function findOrCreateFiling(filing) {
+function findOrCreateFiling(item) {
   let docket_identifier = item.title.split(' ').shift();
 
   db.Docket.findOne({ docket_number: docket_identifier }).then((docket) => {
     if (!docket) {
-      // create docket
+      // create docket and then add Filing
+      db.Docket.create({
+        docket_number: item.title.split(' ').shift(),
+        docket_url: item.link,
+        title: item.title
+      }).then(newDocket => addFiling(newDocket))
+      .catch(err=> console.log(err));
     }
+    else {
+      // insert filing
+      addFiling(docket);
+    }
+  })
+  .catch(err=>console.log(err));
 
-    // insert filing
-  });
+  function addFiling() {
+    console.log("hello");
+  }
 }

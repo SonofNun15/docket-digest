@@ -9,7 +9,7 @@ module.exports = {
     },
     getUpdatedAt: function (req, res) {
         db.Docket.find({ docket_number: req.params.docket_number })
-            .then(res.json(docketDB.updated_at))
+            .then(docketDB => res.json(docketDB.updated_at))
             .catch(err =>
                 res.status(422).json(err)
             );
