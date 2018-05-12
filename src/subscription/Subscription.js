@@ -35,6 +35,7 @@ export class Subscription extends Component {
           </Select>
         </FormControl>
         <Autocomplete 
+                  className="court"
                   suggestions={getCourts()}
                   placeholder="Search for a court"/>
       </div>

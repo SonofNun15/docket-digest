@@ -2,15 +2,15 @@
 	display: flex;
 	flex-flow: column;
 	align-items: center;
-	max-width: 20em;
-	max-height: 20em;
+	max-width: 50em;
+	max-height: 50em;
 }
 
 .court-group {
-	display: flex;
-	flex-flow: row nowrap;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
 }
 
 .court-category {
-	width: 10em;
+	width: 100%;
 }

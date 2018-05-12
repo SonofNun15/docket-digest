@@ -69,6 +69,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     height: 250,
+    marginTop: '1em',
   },
   container: {
     flexGrow: 1,
