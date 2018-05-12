@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+import Account from './Account';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
       </ul>
-      <div className="account"></div>
+      <Account />
     </header>
   );
 };
