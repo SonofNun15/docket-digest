@@ -1,4 +1,5 @@
 import React from 'react';
+import { Subscription } from './subscription/Subscription';
 
 const MainContainer = () => {
   return (
@@ -6,7 +7,9 @@ const MainContainer = () => {
       <header>
         <img src="" alt="Docket Digest" />
       </header>
-      <div></div>
+      <div>
+        <Subscription/>
+      </div>
     </div>
   );
 }

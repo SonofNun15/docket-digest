@@ -16,26 +16,28 @@ export class Subscription extends Component {
   }
   
   render() {
-    return <div>
-      <FormControl className="court-category">
-        <InputLabel htmlFor="court-category">Federal Court</InputLabel>
-        <Select
-          value={this.state.categoryId}
-          onChange={this.setCourtCategory}
-          input={<Input name="court-category" id="court-category" />}>
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {
-            getCourtCategories().map(category => 
-              <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-            )
-          }
-        </Select>
-      </FormControl>
-      <Autocomplete 
-                suggestions={getCourts()}
-                placeholder="Search for a court"/>
+    return <div className="subscription">
+      <div className="court-group">
+        <FormControl className="court-category">
+          <InputLabel htmlFor="court-category">Federal Court</InputLabel>
+          <Select
+            value={this.state.categoryId}
+            onChange={this.setCourtCategory}
+            input={<Input name="court-category" id="court-category" />}>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {
+              getCourtCategories().map(category => 
+                <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
+        <Autocomplete 
+                  suggestions={getCourts()}
+                  placeholder="Search for a court"/>
+      </div>
     </div>;
   }
 }
