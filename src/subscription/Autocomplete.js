@@ -90,7 +90,7 @@ const styles = theme => ({
 });
 
 function Autocomplete(props) {
-  const { classes, suggestions } = props;
+  const { classes, suggestions, placeholder } = props;
 
   return (
     <div className={classes.root}>
@@ -101,7 +101,7 @@ function Autocomplete(props) {
               fullWidth: true,
               classes,
               InputProps: getInputProps({
-                placeholder: 'Search a country (start with a)',
+                placeholder,
                 id: 'integration-downshift-simple',
               }),
             })}
@@ -127,6 +127,8 @@ function Autocomplete(props) {
 
 Autocomplete.propTypes = {
   classes: PropTypes.object.isRequired,
+  suggestions: PropTypes.array.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Autocomplete);

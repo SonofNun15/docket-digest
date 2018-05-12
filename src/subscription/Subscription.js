@@ -3,7 +3,9 @@ import Autocomplete from './Autocomplete';
 
 export class Subscription extends Component {
   render() {
-    return <Autocomplete suggestions={getData()}/>;
+    return <Autocomplete 
+              suggestions={getData()}
+              placeholder="Search for a court"/>;
   }
 }
 
