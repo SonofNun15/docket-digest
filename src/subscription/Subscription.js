@@ -4,17 +4,25 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
+import './Subscription.css';
 
 export class Subscription extends Component {
+  state = {
+    categoryId: 0,
+  };
+  
+  setCourtCategory = event => {
+    this.setState({ categoryId: event.target.value });
+  }
+  
   render() {
     return <div>
-      <FormControl>
+      <FormControl className="court-category">
         <InputLabel htmlFor="court-category">Federal Court</InputLabel>
         <Select
-          // value={this.state.age}
-          value={10}
-          onChange={console.log}
-          input={<Input name="age" id="court-category" />}>
+          value={this.state.categoryId}
+          onChange={this.setCourtCategory}
+          input={<Input name="court-category" id="court-category" />}>
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
