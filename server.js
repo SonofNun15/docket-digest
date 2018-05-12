@@ -37,7 +37,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     // the duration in milliseconds that the cookie is valid
-    maxAge: 120 * 60 * 1000, // 120 minutes
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 120 minutes
     // recommended you use this setting in production if you have a well-known domain you want to restrict the cookies to.
     // domain: 'your.domain.com',
     // recommended you use this setting in production if your site is published using HTTPS
