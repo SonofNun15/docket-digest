@@ -10,7 +10,12 @@ const UserSchema = new Schema({
     type: String,
     unique: true,
     required: true
-  }
+  },
+  
+  subscriptions: [{
+    type: Schema.Types.ObjectId,
+    ref: "Docket"
+  }]
 
 });
 
