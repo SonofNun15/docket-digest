@@ -1,6 +1,6 @@
 const db = require("../models");
 const passport = require('passport');
-
+const md5 = require('md5');
 
 module.exports = {
     create: function (req, res) {
@@ -34,6 +34,6 @@ module.exports = {
                 message: 'You are not currently logged in.'
             });
         }
-        res.json({ username: req.user.username, id: req.user._id });
+        res.json({ username: req.user.username, id: req.user._id, gravatarId: md5(req.user.username.toLowerCase().trim()) });
     }
 };
