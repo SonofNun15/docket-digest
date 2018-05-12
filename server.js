@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-// const routes = require('./routes');
+const routes = require('./routes');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const LocalStrategy = require('passport-local').Strategy;
@@ -50,7 +50,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static("./build"));
-// app.use(routes);
+app.use(routes);
 
 const server = app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
