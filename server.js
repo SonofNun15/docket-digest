@@ -45,8 +45,8 @@ app.use(passport.session());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("/build"));
-app.use(routes);
+app.use(express.static("./build"));
+// app.use(routes);
 
 const server = app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
