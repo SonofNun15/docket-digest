@@ -13,6 +13,10 @@ const cookieparser = require('cookie-parser');
 const session = require('express-session');
 const axios = require('axios');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/open-courts";
+
+const feedRead = require('davefeedread');
+const utils = require('daveutils');
+
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {});
 
@@ -50,4 +54,21 @@ app.use(express.static("./build"));
 
 const server = app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
+
+  const urlTestFeed = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
+  const timeOutSecs = 30;
+  const whenstart = new Date ();
+
+  feedRead.parseUrl (urlTestFeed, timeOutSecs, function (err, theFeed) {
+    if (err) {
+      console.log (err.message);
+    }
+    else {
+      for (var i = 0; i < theFeed.items.length; i++) {
+        console.log ("Item #" + i + ": " + theFeed.items [i].title + ".\n  " + theFeed.items[i].description);
+      }
+
+      console.log ("It took " + utils.secondsSince (whenstart) + " seconds to read and parse the feed.");
+    }
+  });
 });
