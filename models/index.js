@@ -1,6 +1,6 @@
 module.exports = {
-    User: require('./User'),
-    Docket: require('./Docket'),
-    Filing: require('./Filing')
-  };
-  
+  User: require('./User'),
+  Docket: require('./Docket'),
+  DocketList: require('./DocketList'),
+  Filing: require('./Filing'),
+};
