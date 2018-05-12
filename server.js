@@ -64,8 +64,9 @@ const server = app.listen(PORT, function () {
       console.log (err.message);
     }
     else {
+        console.log(theFeed.items[0])
       for (var i = 0; i < theFeed.items.length; i++) {
-        console.log ("Item #" + i + ": " + theFeed.items [i].title + ".\n  " + theFeed.items[i].description);
+        // console.log ("Item #" + i + ": " + theFeed.items [i].title + ".\n  " + theFeed.items[i].description);
       }
 
       console.log ("It took " + utils.secondsSince (whenstart) + " seconds to read and parse the feed.");

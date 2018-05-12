@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 const FilingSchema = new Schema({
 
     document_url: {
-        type: String
+        type: String,
+        unique: true
     },
 
     description: {
@@ -16,10 +17,10 @@ const FilingSchema = new Schema({
 
     created_at: {
         type: Date,
-        default:Date.now
+        default: Date.now
     },
 
-    published_at : {
+    published_at: {
         type: Date,
         required: true
     }
