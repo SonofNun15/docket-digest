@@ -35,13 +35,13 @@ class LoginDialog extends React.Component {
             else {
                 api.register(name, email, password)
                 .then(user => update(user));
-                this.props.onClose();
+                this.props.onClose(true);
             }
         }
         else {
             api.login(email, password)
             .then(user => update(user));
-            this.props.onClose();
+            this.props.onClose(true);
         }
     };
 

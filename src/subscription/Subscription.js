@@ -50,9 +50,12 @@ class Subscription extends Component {
     }
   }
 
-  closeLoginDialog = () => {
+  closeLoginDialog = success => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
+    if (success) {
+      this.subscribe();
+    }
   }
 
   subscribe = () => {
