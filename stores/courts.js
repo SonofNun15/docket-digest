@@ -35,9 +35,39 @@ module.exports = [
     name: 'U.S. District Courts',
     courts: [
       {
-        identifier: '',
-        name: '',
-        feed_url: '',
+        identifier: 'alabama_middle',
+        name: 'Alabama Middle',
+        feed_url: 'https://ecf.almd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'alabama_southern',
+        name: 'Alabama Southern',
+        feed_url: 'https://ecf.alsd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'alaska',
+        name: 'Alaska',
+        feed_url: 'https://ecf.akd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'arizona',
+        name: 'Arizona',
+        feed_url: 'https://ecf.azd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'arkansas_eastern',
+        name: 'Arkansas Eastern',
+        feed_url: 'https://ecf.ared.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'arkansas_western',
+        name: 'Arkansas Western',
+        feed_url: 'https://ecf.arwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'california_central',
+        name: 'California Central',
+        feed_url: 'https://ecf.cacd.uscourts.gov/cgi-bin/rss_outside.pl',
       },
     ],
   },
