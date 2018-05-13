@@ -13,6 +13,8 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';import './loginDialog.css';
 
+import { update } from '../components/WithUser';
+
 class LoginDialog extends React.Component {
     state = {
         email : "",
@@ -20,12 +22,13 @@ class LoginDialog extends React.Component {
         regVis : false
     };
     handleClose = () => {
-      this.props.onClose();
+        this.props.onClose();
     };
 
     handleSubmit = () => {
         const { email, password } = this.state;
-        api.login(email, password);
+        api.login(email, password)
+            .then(user => update(user));
         this.props.onClose();
     };
 
@@ -93,7 +96,7 @@ class LoginDialog extends React.Component {
                         </Button>
                     </DialogActions>
                 </form>
-            </Dialog>        
+            </Dialog>
         )
     }
 }
