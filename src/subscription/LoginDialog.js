@@ -5,7 +5,6 @@ import { FormControl } from 'material-ui/Form';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -52,7 +51,7 @@ class LoginDialog extends React.Component {
                     <DialogContentText>
                         Login using your e-mail address and password.
                     </DialogContentText>
-                    <FlatButton onClick={this.handleToggleRegistration}><font size="2">Create Account</font></FlatButton>
+                    <Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -78,7 +77,7 @@ class LoginDialog extends React.Component {
             )
         }
     };
-    
+
     render() {
         const { classes, onClose, selectedValue, ...other } = this.props;
 
