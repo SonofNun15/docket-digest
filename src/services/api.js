@@ -13,6 +13,14 @@ class Api {
             .then(result => result.data)
             .catch(err => console.error(err));
   }
+
+  subscribe(category, court, docketNumber) {
+    return axios.post('/api/subscriptions', {
+      category_identifier: category.identifier,
+      court_identifier: court.identifier,
+      docket_identifier: docketNumber,
+    });
+  }
 }
 
 export default new Api();
