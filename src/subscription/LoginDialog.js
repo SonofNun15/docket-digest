@@ -35,14 +35,18 @@ class LoginDialog extends React.Component {
             }
             else {
                 api.register(name, email, password)
-                .then(user => update(user));
-                this.props.onClose(true);
+                .then(user => {
+                    update(user);
+                    this.props.onClose(true);
+                });
             }
         }
         else {
             api.login(email, password)
-            .then(user => update(user));
-            this.props.onClose(true);
+            .then(user => {
+                update(user);
+                this.props.onClose(true);
+            });
         }
     };
 
@@ -89,6 +93,7 @@ class LoginDialog extends React.Component {
                         value={password}
                         label="Password"
                         type="password"
+                        error={passwordWarning && passwordWarning.length > 0}
                         errorText={passwordWarning}
                         fullWidth
                         onChange={this.onChange}
