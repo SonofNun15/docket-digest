@@ -7,7 +7,6 @@ const DocketSchema = new Schema({
 
     docket_number: {
         type: String,
-        unique: true,
         required: true,
     },
 
