@@ -31,7 +31,7 @@ class Subscription extends Component {
     const category = this.props.data.find(x => x.identifier === event.target.value);
     this.setState({ category, court: null });
   }
-  
+
   setCourt = courtName => {
     const court = this.state.category.courts.find(x => x.name === courtName);
     this.setState({ court });
@@ -45,13 +45,11 @@ class Subscription extends Component {
     if (this.props.user) {
       this.subscribe();
     } else {
-      console.log(this.state.showLoginDialog);
       this.setState({ showLoginDialog: true });
     }
   }
 
   closeLoginDialog = success => {
-    console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
     if (success) {
       this.subscribe();
@@ -74,7 +72,7 @@ class Subscription extends Component {
   canSubscribe = () => {
     return this.state.category && this.state.court && this.state.docketNumber;
   }
-  
+
   render() {
     if (!this.props.data) {
       return <div>Loading...</div>;
@@ -94,16 +92,16 @@ class Subscription extends Component {
                 <em>None</em>
               </MenuItem>
               {
-                this.props.data.map(category => 
+                this.props.data.map(category =>
                   <MenuItem key={category.identifier} value={category.identifier}>{category.name}</MenuItem>
                 )
               }
             </Select>
           </FormControl>
           <div/>
-          <Autocomplete 
+          <Autocomplete
                     className="court"
-                    suggestions={this.state.category.courts 
+                    suggestions={this.state.category.courts
                             && this.state.category.courts.map(x => x.name)}
                     selection={this.state.court ? this.state.court.name : ''}
                     onChange={this.setCourt}
@@ -122,7 +120,7 @@ class Subscription extends Component {
         </div>
       </div>
       <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>
-      {this.state.showLoginDialog && 
+      {this.state.showLoginDialog &&
         <LoginDialog onClose={this.closeLoginDialog} />}
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -133,7 +131,7 @@ class Subscription extends Component {
         }}
         message={
         <span className="success">
-          <Icon className="success-icon">check</Icon> 
+          <Icon className="success-icon">check</Icon>
           <span className="success-message" id="message-id">You have been successfully subscribed to this docket</span>
         </span>}
       />
