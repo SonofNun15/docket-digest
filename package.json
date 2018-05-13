@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",

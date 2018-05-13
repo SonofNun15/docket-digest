@@ -1,21 +1,93 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import IconButton from 'material-ui/IconButton';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import Divider from 'material-ui/Divider';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link, withRouter } from 'react-router-dom';
+
 import './Account.css';
 
 function gravatarUrl(gravatarId) {
   return `https://www.gravatar.com/avatar/${gravatarId}?s=96`
 }
-const Account = ({ user }) => {
-  if (user == null) {
-    return <div />
+
+class Account extends Component {
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleProfile = () => { this.handleRoute('/profile'); };
+  handleSubscriptions = () => { this.handleRoute('/subscriptions'); };
+
+  handleRoute = (destination) => {
+    const { history, location } = this.props;
+
+    this.setState({ anchorEl: null });
+
+    if (location.pathname != destination) {
+      history.push(destination);
+    }
+  };
+
+  handleLogout = () => {
+
+    this.setState({ anchorEl: null });
+  };
+
+  render() {
+    const { user } = this.props;
+
+    if (user == null) {
+        return <div />
+    }
+
+    const { gravatarId } = user;
+    const { anchorEl } = this.state;
+    const ITEM_HEIGHT = 48;
+
+    return (
+      <div className="account-container">
+        <div
+          className="menu-host"
+          onClick={this.handleClick}
+          aria-owns={anchorEl ? 'long-menu' : null}
+          aria-label="More"
+          aria-haspopup="true"
+        >
+            <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
+            <MoreVertIcon />
+        </div>
+        <Menu
+          id="long-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+          PaperProps={{
+              style: {
+              maxHeight: ITEM_HEIGHT * 4.5,
+              width: 200,
+            },
+          }}
+        >
+          <MenuItem onClick={this.handleProfile}>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={this.handleSubscriptions}>
+            Manage subscriptions
+          </MenuItem>
+          <Divider />
+          <MenuItem onClick={this.handleLogout}>
+            Log out
+          </MenuItem>
+        </Menu>
+      </div>
+    );
   }
-
-  const { gravatarId } = user;
-
-  return (
-    <div className="account-area">
-      <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
-    </div>
-  );
 };
 
-export default Account;
+export default withRouter(Account);

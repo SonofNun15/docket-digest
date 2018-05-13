@@ -1,5 +1,6 @@
 import React from 'react';
 import { Subscription } from './subscription/Subscription';
+import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 
 const MainContainer = () => {
@@ -7,7 +8,9 @@ const MainContainer = () => {
     <div>
       <div className="container">
         <header>
-          <img src={logo} width="320" alt="Docket Digest" />
+          <Link to="/">
+            <img src={logo} width="320" alt="Docket Digest" />
+          </Link>
         </header>
         <div>
           <Subscription/>

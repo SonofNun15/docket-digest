@@ -6,15 +6,27 @@ import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Button from 'material-ui/Button';
 import { DocketInput } from './DocketInput';
+import LoginDialog from './LoginDialog';
 import './Subscription.css';
 
 export class Subscription extends Component {
   state = {
     categoryId: 0,
+    courtName: '',
+    showLoginDialog: false
   };
   
   setCourtCategory = event => {
     this.setState({ categoryId: event.target.value });
+  }
+
+  openLoginDialog = () => {
+    console.log(this.state.showLoginDialog);
+    this.setState({ showLoginDialog: true });
+  }
+  
+  setCourt = courtName => {
+    this.setState({ courtName });
   }
   
   render() {
@@ -41,14 +53,18 @@ export class Subscription extends Component {
           <div/>
           <Autocomplete 
                     className="court"
-                    suggestions={getCourts()}
+                    suggestions={getCourts().map(x => x.label)}
+                    value={this.state.courtName}
+                    onChange={this.setCourt}
                     placeholder="Search for a court"/>
         </div>
       </div>
       <div>
         <DocketInput/>
       </div>
-      <Button variant="raised">Subscribe</Button>
+      <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
+      {this.state.showLoginDialog && 
+        <LoginDialog />}
     </div>;
   }
 }
