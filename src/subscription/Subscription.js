@@ -41,7 +41,7 @@ export class Subscription extends Component {
           <div/>
           <Autocomplete 
                     className="court"
-                    suggestions={getCourts()}
+                    suggestions={getCourts().map(x => x.label)}
                     placeholder="Search for a court"/>
         </div>
       </div>
