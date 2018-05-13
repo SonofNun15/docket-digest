@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './AboutHelp.css';
 
 const Help = () => {
     return (
-        <div>
+        <div className="image-center">
             <header>
                 <Link to="/">
                     <img src="" alt="Docket Digest" />
                 </Link>
             </header>
-            <p>This is the Help Page.</p>
+            <p className="text">This is the Help Page.</p>
         </div>
     )
 }
