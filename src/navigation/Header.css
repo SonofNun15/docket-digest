@@ -1,0 +1,15 @@
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+li {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 10px;
+}
+
+a {
+  color: #3E82F7;
+  text-decoration: none;
+}

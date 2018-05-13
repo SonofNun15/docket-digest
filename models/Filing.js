@@ -7,7 +7,10 @@ const FilingSchema = new Schema({
 
     document_url: {
         type: String,
-        unique: true
+    },
+
+    docket_url: {
+        type:String,
     },
 
     description: {

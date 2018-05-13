@@ -1,15 +1,59 @@
 import React, { Component } from 'react';
 import Autocomplete from './Autocomplete';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import { FormControl } from 'material-ui/Form';
+import Select from 'material-ui/Select';
+import './Subscription.css';
 
 export class Subscription extends Component {
+  state = {
+    categoryId: 0,
+  };
+  
+  setCourtCategory = event => {
+    this.setState({ categoryId: event.target.value });
+  }
+  
   render() {
-    return <Autocomplete 
-              suggestions={getData()}
-              placeholder="Search for a court"/>;
+    return <div className="subscription">
+      <div className="court-group">
+        <FormControl className="court-category">
+          <InputLabel htmlFor="court-category">Federal Court</InputLabel>
+          <Select
+            value={this.state.categoryId}
+            onChange={this.setCourtCategory}
+            input={<Input name="court-category" id="court-category" />}>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            {
+              getCourtCategories().map(category => 
+                <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+              )
+            }
+          </Select>
+        </FormControl>
+        <Autocomplete 
+                  className="court"
+                  suggestions={getCourts()}
+                  placeholder="Search for a court"/>
+      </div>
+    </div>;
   }
 }
 
-function getData() {
+function getCourtCategories() {
+  return [
+    { id: 1, name: 'U.S. Supreme Court' },
+    { id: 2, name: 'National Locator' },
+    { id: 3, name: 'U.S. Court of Appeals' },
+    { id: 4, name: 'U.S. District Courts' },
+    { id: 5, name: 'U.S. Bankruptcy Courts' },
+  ];
+}
+
+function getCourts() {
   return [
     { label: 'Alabama Middle - ECF CM/ECF-DC V6.1 Court RSS Feed Court Information' },
     { label: 'Alabama Northern - ECF CM/ECF-DC V6.1.1 Court Information' },

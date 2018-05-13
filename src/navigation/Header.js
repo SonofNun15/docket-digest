@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-// import './App.css';
+import React from 'react';
+import './Header.css';
+import Account from './Account';
 
 const Header = () => {
   return (
     <header className="app-header">
       <ul>
-        <li>About</li>
-        <li>Help</li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Help</a></li>
       </ul>
-      <div class="account"></div>
+      <Account />
     </header>
   );
 };

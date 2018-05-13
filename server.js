@@ -37,7 +37,7 @@ app.use(session({
   cookie: {
     httpOnly: true,
     // the duration in milliseconds that the cookie is valid
-    maxAge: 120 * 60 * 1000, // 120 minutes
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 120 minutes
     // recommended you use this setting in production if you have a well-known domain you want to restrict the cookies to.
     // domain: 'your.domain.com',
     // recommended you use this setting in production if your site is published using HTTPS
@@ -54,22 +54,4 @@ app.use(routes);
 
 const server = app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
-
-  const urlTestFeed = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
-  const timeOutSecs = 30;
-  const whenstart = new Date ();
-
-  feedRead.parseUrl (urlTestFeed, timeOutSecs, function (err, theFeed) {
-    if (err) {
-      console.log (err.message);
-    }
-    else {
-        console.log(theFeed.items[0])
-      for (var i = 0; i < theFeed.items.length; i++) {
-        // console.log ("Item #" + i + ": " + theFeed.items [i].title + ".\n  " + theFeed.items[i].description);
-      }
-
-      console.log ("It took " + utils.secondsSince (whenstart) + " seconds to read and parse the feed.");
-    }
-  });
 });

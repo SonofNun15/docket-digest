@@ -69,6 +69,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     height: 250,
+    marginTop: '1em',
   },
   container: {
     flexGrow: 1,
@@ -78,8 +79,8 @@ const styles = theme => ({
     position: 'absolute',
     zIndex: 1,
     marginTop: theme.spacing.unit,
-    left: 0,
     right: 0,
+    width: '40em',
   },
   chip: {
     margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,

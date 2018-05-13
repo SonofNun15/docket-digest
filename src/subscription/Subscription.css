@@ -1,0 +1,16 @@
+.subscription {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	max-width: 50em;
+	max-height: 50em;
+}
+
+.court-group {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+}
+
+.court-category {
+	width: 100%;
+}
