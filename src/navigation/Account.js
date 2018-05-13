@@ -44,7 +44,7 @@ class Account extends Component {
     this.close();
   };
 
-  close() {
+  close = () => {
     this.setState({ anchorEl: null });
   }
 
@@ -75,7 +75,7 @@ class Account extends Component {
           id="long-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.handleClose}
+          onClose={this.close}
           PaperProps={{
               style: {
               maxHeight: ITEM_HEIGHT * 4.5,
