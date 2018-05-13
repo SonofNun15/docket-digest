@@ -3,8 +3,7 @@ import axios from 'axios';
 class Api {
   login(username, password) {
     return axios.post('/api/users/login', {username, password})
-        .then(result => result.data)
-        .catch(err => console.error(err));
+        .then(result => result.data);
   }
   logout() {
     axios.delete('/api/users/login');
@@ -12,14 +11,12 @@ class Api {
 
   register(name, username, password) {
     return axios.post('/api/users', {name, username, password})
-        .then(result => result.data)
-        .catch(err => console.error(err));
+        .then(result => result.data);
   }
 
   getCourts() {
     return axios.get('/api/courts')
-            .then(result => result.data)
-            .catch(err => console.error(err));
+            .then(result => result.data);
   }
 
   subscribe(category, court, docketNumber) {
