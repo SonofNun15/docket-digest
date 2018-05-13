@@ -101,6 +101,10 @@ export class Autocomplete extends Component {
       selection: '',
     });
   }
+
+  handleInputBlur = () => {
+    this.setState({ textValue: '' });
+  }
   
   onSelection = value => {
     this.setState({ selection: value, textValue: '' })
@@ -125,6 +129,7 @@ export class Autocomplete extends Component {
                   onChange: this.handleInputChange,
                   value: inputValue || selection,
                   disabled: !suggestions,
+                  onBlur: this.handleInputBlur,
                 }),
               })}
               {isOpen ? (
