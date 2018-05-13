@@ -10,6 +10,12 @@ class Api {
     axios.delete('/api/users/login');
   }
 
+  register(name, username, password) {
+    return axios.post('/api/users', {name, username, password})
+        .then(result => result.data)
+        .catch(err => console.error(err));
+  }
+
   getCourts() {
     return axios.get('/api/courts')
             .then(result => result.data)

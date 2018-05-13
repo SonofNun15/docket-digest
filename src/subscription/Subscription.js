@@ -43,17 +43,24 @@ class Subscription extends Component {
 
   openLoginDialog = () => {
     if (this.props.user) {
-      Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
-        .then(this.openSuccessMessage);
+      this.subscribe();
     } else {
       console.log(this.state.showLoginDialog);
       this.setState({ showLoginDialog: true });
     }
   }
 
-  closeLoginDialog = () => {
+  closeLoginDialog = success => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
+    if (success) {
+      this.subscribe();
+    }
+  }
+
+  subscribe = () => {
+    Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
+        .then(this.openSuccessMessage);
   }
 
   openSuccessMessage = () => {
