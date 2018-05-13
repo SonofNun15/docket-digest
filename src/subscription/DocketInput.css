@@ -1,0 +1,13 @@
+.docket-group {
+	display: grid;
+	grid-template-columns: 1fr 2em 3fr 2em 2fr 2em 3fr;
+}
+
+.docket-group .nomargin {
+	margin: 0;
+}
+
+.seperator {
+	margin-top: 0.5em;
+	text-align: center;
+}

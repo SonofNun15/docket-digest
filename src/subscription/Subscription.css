@@ -2,13 +2,14 @@
 	display: flex;
 	flex-flow: column;
 	align-items: center;
-	max-width: 50em;
+	max-width: 36.5em;
 	max-height: 50em;
 }
 
 .court-group {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
+	margin-bottom: 2em;
 }
 
 .court-category {
