@@ -6,6 +6,7 @@ div.account-container {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  cursor: pointer;
 }
 
 div.account-container .menu-host {
