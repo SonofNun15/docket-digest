@@ -37,6 +37,7 @@ export class Subscription extends Component {
               }
             </Select>
           </FormControl>
+          <div/>
           <Autocomplete 
                     className="court"
                     suggestions={getCourts()}
