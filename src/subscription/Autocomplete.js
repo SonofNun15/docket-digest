@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import { withStyles } from 'material-ui/styles';
@@ -87,46 +87,73 @@ const styles = theme => ({
   },
 });
 
-function Autocomplete(props) {
-  const { classes, suggestions, placeholder } = props;
+export class Autocomplete extends Component {
+  state = { selection: '' };
 
-  return (
-    <div className={classes.root}>
-      <Downshift>
-        {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
-          <div className={classes.container}>
-            {renderInput({
-              fullWidth: true,
-              classes,
-              InputProps: getInputProps({
-                placeholder,
-                id: 'integration-downshift-simple',
-              }),
-            })}
-            {isOpen ? (
-              <Paper className={classes.paper} square>
-                {getSuggestions(inputValue, suggestions).map((suggestion, index) =>
-                  renderSuggestion({
-                    suggestion,
-                    index,
-                    itemProps: getItemProps({ item: suggestion }),
-                    highlightedIndex,
-                    selectedItem,
-                  }),
-                )}
-              </Paper>
-            ) : null}
-          </div>
-        )}
-      </Downshift>
-    </div>
-  );
+	static getDerivedStateFromProps(props, previousState) {
+		if (props.selection) {
+			return {...previousState, selection: props.selection};
+		}
+		return null;
+  }
+  
+  handleInputChange = event => {
+    if (!event.target.value) {
+      this.setState({ selection: '' });
+    }
+  }
+  
+  onSelection = value => {
+    this.setState({ selection: value })
+    this.props.onChange(value);
+  }
+  
+  render() {
+    const { classes, suggestions, placeholder } = this.props;
+    const { selection } = this.state;
+
+    return (
+      <div className={classes.root}>
+        <Downshift selectedItem={selection} onChange={this.onSelection}>
+          {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
+            <div className={classes.container}>
+              {renderInput({
+                fullWidth: true,
+                classes,
+                InputProps: getInputProps({
+                  placeholder,
+                  id: 'integration-downshift-simple',
+                  onChange: this.handleInputChange,
+                  value: inputValue || selection,
+                }),
+              })}
+              {isOpen ? (
+                <Paper className={classes.paper} square>
+                  {getSuggestions(inputValue, suggestions).map((suggestion, index) =>
+                    renderSuggestion({
+                      suggestion,
+                      index,
+                      itemProps: getItemProps({ item: suggestion }),
+                      highlightedIndex,
+                      selectedItem,
+                    }),
+                  )}
+                </Paper>
+              ) : null}
+            </div>
+          )}
+        </Downshift>
+      </div>
+    );
+  }
 }
 
 Autocomplete.propTypes = {
   classes: PropTypes.object.isRequired,
   suggestions: PropTypes.array.isRequired,
   placeholder: PropTypes.string.isRequired,
+  selection: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default withStyles(styles)(Autocomplete);

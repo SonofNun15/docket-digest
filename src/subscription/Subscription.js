@@ -11,10 +11,15 @@ import './Subscription.css';
 export class Subscription extends Component {
   state = {
     categoryId: 0,
+    courtName: '',
   };
   
   setCourtCategory = event => {
     this.setState({ categoryId: event.target.value });
+  }
+  
+  setCourt = courtName => {
+    this.setState({ courtName });
   }
   
   render() {
@@ -42,6 +47,8 @@ export class Subscription extends Component {
           <Autocomplete 
                     className="court"
                     suggestions={getCourts().map(x => x.label)}
+                    value={this.state.courtName}
+                    onChange={this.setCourt}
                     placeholder="Search for a court"/>
         </div>
       </div>
