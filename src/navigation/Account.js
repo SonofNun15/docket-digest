@@ -1,8 +1,20 @@
 import React from 'react';
+import './Account.css';
 
-const Account = () => {
+function gravatarUrl(gravatarId) {
+  return `https://www.gravatar.com/avatar/${gravatarId}?s=96`
+}
+const Account = ({ user }) => {
+  if (user == null) {
+    return <div />
+  }
+
+  const { gravatarId } = user;
+
   return (
-    <div />
+    <div className="account-area">
+      <img src={gravatarUrl(gravatarId)} width="48" height="48" alt="profile" />
+    </div>
   );
 };
 
