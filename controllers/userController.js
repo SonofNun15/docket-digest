@@ -11,7 +11,7 @@ module.exports = {
 
             passport.authenticate('local')(req, res, function () {
                 const { username, _id } = req.user;
-                res.json({ message: "Account Created", username: username, id: _id });
+                res.json({ username: username, id: _id, gravatarId: md5(username.toLowerCase().trim()) });
             });
         });
     },

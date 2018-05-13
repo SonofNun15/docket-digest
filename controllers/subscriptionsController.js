@@ -4,9 +4,12 @@ const courts = require('../stores/courts');
 module.exports = {
   subscribe: function (req, res) {
     let sub = req.body;
-
+    if (req.user) {
+      db.User.update({ _id: req.user._id }, { $push: { subscriptions: sub.docket_identifier } })
+        .then(console.log('worked'))
+        .catch(err => console.log(err));
+    }
     db.Court.findOne({ identifier: sub.court_identifier, category: sub.category_identifier }).then((court) => {
-      console.log('court find', court);
 
       if (!court) {
         let court_exists = courts
