@@ -13,22 +13,23 @@ import './Subscription.css';
 class Subscription extends Component {
   state = {
     category: { identifier: 0 },
-    courtName: '',
+    court: null,
     docketNumber: '',
     showLoginDialog: false
   };
 
   setCourtCategory = event => {
     if (!event.target.value) {
-      this.setState({ category: { identifier: 0 }, courtName: '' });
+      this.setState({ category: { identifier: 0 }, court: null });
       return;
     }
     const category = this.props.data.find(x => x.identifier === event.target.value);
-    this.setState({ category, courtName: '' });
+    this.setState({ category, court: null });
   }
   
   setCourt = courtName => {
-    this.setState({ courtName });
+    const court = this.state.category.courts.find(x => x.name === courtName);
+    this.setState({ court });
   }
 
   setDocketNumber = event => {
@@ -75,7 +76,7 @@ class Subscription extends Component {
                     className="court"
                     suggestions={this.state.category.courts 
                             && this.state.category.courts.map(x => x.name)}
-                    selection={this.state.courtName}
+                    selection={this.state.court ? this.state.court.name : ''}
                     onChange={this.setCourt}
                     placeholder="Search for a court"/>
         </div>
@@ -91,6 +92,7 @@ class Subscription extends Component {
             margin="normal" />
         </div>
       </div>
+      <Button onClick={e => console.log(this.state)} variant="raised">Subscribe</Button>
       <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
       {this.state.showLoginDialog && 
         <LoginDialog onClose={this.closeLoginDialog} />}
