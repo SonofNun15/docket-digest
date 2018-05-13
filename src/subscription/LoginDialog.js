@@ -18,6 +18,8 @@ class LoginDialog extends React.Component {
     state = {
         email : "",
         password : "",
+        confirmPassword : "",
+        name : "",
         regVis : false
     };
     handleClose = () => {
@@ -25,10 +27,22 @@ class LoginDialog extends React.Component {
     };
 
     handleSubmit = () => {
-        const { email, password } = this.state;
-        api.login(email, password)
+        const { email, password, confirmPassword, name, regVis  } = this.state;
+        if (regVis) {
+            if (password != confirmPassword) {
+                
+            }
+            else {
+                api.register(name, email, password)
+                .then(user => update(user));
+                this.props.onClose();
+            }
+        }
+        else {
+            api.login(email, password)
             .then(user => update(user));
-        this.props.onClose();
+            this.props.onClose();
+        }
     };
 
     handleToggleRegistration = () => {
@@ -41,9 +55,57 @@ class LoginDialog extends React.Component {
     };
 
     renderLoginContent() {
-        const { regVis, email, password } = this.state;
+        const { regVis, email, password, name, confirmPassword } = this.state;
         if (regVis) {
-            return ;
+            return (
+                <DialogContent>
+                    <DialogContentText>
+                        Create new account.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        name="name"
+                        value={name}
+                        label="Name"
+                        type="name"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        name="email"
+                        value={email}
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="password"
+                        name="password"
+                        value={password}
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={confirmPassword}
+                        label="Confirm Password"
+                        type="password"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                </DialogContent>
+            )
         }
         else {
             return (
@@ -51,7 +113,7 @@ class LoginDialog extends React.Component {
                     <DialogContentText>
                         Login using your e-mail address and password.
                     </DialogContentText>
-                    <Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
+                    < Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -77,21 +139,22 @@ class LoginDialog extends React.Component {
             )
         }
     };
-
+    
     render() {
         const { classes, onClose, selectedValue, ...other } = this.props;
-
+        const { regVis } = this.state;
+ 
         return (
             <Dialog onClose={this.handleClose} aria-labelledby="login-dialog" open = {true}>
                 <form onSubmit={this.handleSubmit}>
-                    <DialogTitle id="login-dialog">User Login</DialogTitle>
+                    <DialogTitle id="login-dialog">{regVis?"Create Account":"User Login"}</DialogTitle>
                     {this.renderLoginContent()}
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
                         </Button>
                         <Button type="submit" color="primary">
-                            Subscribe
+                            Submit
                         </Button>
                     </DialogActions>
                 </form>
