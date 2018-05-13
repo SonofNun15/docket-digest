@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import Account from './Account';
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <header className="app-header">
       <ul>
         <li><Link to="/About">About</Link></li>
         <li><Link to="/Help">Help</Link></li>
       </ul>
-      <Account />
+      <Account user={user} />
     </header>
   );
 };
