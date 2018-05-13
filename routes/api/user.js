@@ -3,10 +3,10 @@ const userController = require("../../controllers/userController");
 
 router.route("/")
     .post(userController.create)
-    .delete(userController.logout)
     .get(userController.currentuser);
 
 router.route("/login")
-    .post(userController.login);
+    .post(userController.login)
+    .delete(userController.logout);
 
 module.exports = router;

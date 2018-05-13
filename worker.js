@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/open-courts";
 const db = require("./models");
+const courts = require('./stores/courts');
 
 const reader = require('davefeedread');
 const utils = require('daveutils');
@@ -13,7 +14,7 @@ mongoose.connect(MONGODB_URI, {});
 const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
 const whenstart = new Date();
-db.DocketList.find({}).then((list) => {
+db.court.find({}).then((list) => {
   // console.log("found something");
   let identifiers = list.map(item => item.docket_identifier);
 
