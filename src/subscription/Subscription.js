@@ -19,6 +19,10 @@ class Subscription extends Component {
   };
 
   setCourtCategory = event => {
+    if (!event.target.value) {
+      this.setState({ category: { identifier: 0 }, courtName: '' });
+      return;
+    }
     const category = this.props.data.find(x => x.identifier === event.target.value);
     this.setState({ category, courtName: '' });
   }
