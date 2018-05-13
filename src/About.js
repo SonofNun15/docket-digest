@@ -17,12 +17,12 @@ const About = () => {
             </p>
             <p className="text">
               Docket Digest allows users to subscribe to updates of federal cases in courts that
-              provide public case feeds.  Users no longer need to pay to access the PACER site to
+              provide public case feeds.  Users no longer need to pay to access PACER to
               confirm whether updates have been filed.
             </p>
             <p className="text">
               Users will receive 3 free subscriptions, and are charged a small fee for subsequent
-              subscriptions.  Real time updates to court filings
+              subscriptions.
             </p>
           </div>
         </div>
