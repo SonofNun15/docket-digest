@@ -1,6 +1,7 @@
 .docket-group {
 	display: grid;
 	grid-template-columns: 1fr 2em 3fr 2em 2fr 2em 3fr;
+	margin-bottom: 2em;
 }
 
 .docket-group .nomargin {

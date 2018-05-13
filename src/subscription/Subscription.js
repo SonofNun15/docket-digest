@@ -4,6 +4,7 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
+import Button from 'material-ui/Button';
 import { DocketInput } from './DocketInput';
 import './Subscription.css';
 
@@ -47,6 +48,7 @@ export class Subscription extends Component {
       <div>
         <DocketInput/>
       </div>
+      <Button variant="raised">Subscribe</Button>
     </div>;
   }
 }
