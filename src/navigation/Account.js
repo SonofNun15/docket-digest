@@ -13,7 +13,7 @@ const Account = ({ user }) => {
 
   return (
     <div className="account-area">
-      <img src={gravatarUrl(gravatarId)} width="48" height="48" alt="profile" />
+      <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
     </div>
   );
 };
