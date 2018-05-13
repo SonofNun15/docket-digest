@@ -29,3 +29,16 @@
 .subscription .nomargin {
 	margin: 0;
 }
+
+.subscription .success {
+	display: flex;
+	flex-flow: row;
+}
+
+.subscription .success-icon {
+	color: #5de80d;
+}
+
+.subscription .success-message {
+	margin: 0.25em;
+}

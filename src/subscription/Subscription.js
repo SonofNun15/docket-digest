@@ -6,8 +6,11 @@ import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
+import Icon from 'material-ui/Icon';
 import LoginDialog from './LoginDialog';
 import { withCourts } from './withCourts';
+import { withUser } from '../components/WithUser';
 import './Subscription.css';
 
 class Subscription extends Component {
@@ -15,7 +18,8 @@ class Subscription extends Component {
     category: { identifier: 0 },
     court: null,
     docketNumber: '',
-    showLoginDialog: false
+    showLoginDialog: false,
+    showSuccessMessage: false
   };
 
   setCourtCategory = event => {
@@ -37,13 +41,25 @@ class Subscription extends Component {
   }
 
   openLoginDialog = () => {
-    console.log(this.state.showLoginDialog);
-    this.setState({ showLoginDialog: true });
+    if (this.props.user) {
+      this.openSuccessMessage();
+    } else {
+      console.log(this.state.showLoginDialog);
+      this.setState({ showLoginDialog: true });
+    }
   }
 
   closeLoginDialog = () => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
+  }
+
+  openSuccessMessage = () => {
+    this.setState({ showSuccessMessage: true });
+  }
+
+  closeSuccessMessage = () => {
+    this.setState({ showSuccessMessage: false });
   }
 
   canSubscribe = () => {
@@ -99,8 +115,21 @@ class Subscription extends Component {
       <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>
       {this.state.showLoginDialog && 
         <LoginDialog onClose={this.closeLoginDialog} />}
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={this.state.showSuccessMessage}
+        onClose={this.closeSuccessMessage}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={
+        <span className="success">
+          <Icon className="success-icon">check</Icon> 
+          <span className="success-message" id="message-id">You have been successfully subscribed to this docket</span>
+        </span>}
+      />
     </div>;
   }
 }
 
-export default withCourts(Subscription);
+export default withCourts(withUser(Subscription));
