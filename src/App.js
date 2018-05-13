@@ -29,10 +29,11 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header user={user} />
           <Route exact path="/" component={MainContainer} />
           <Route path="/About" component={About} />
           <Route path="/Help" component={Help} />
