@@ -1,8 +1,5 @@
 import React from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
 import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
-import { Link } from 'react-router-dom';
 import api from '../services/api';
 import TextField from 'material-ui/TextField';
 import Dialog, {
@@ -26,11 +23,14 @@ class LoginDialog extends React.Component {
         this.props.onClose();
     };
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
         const { email, password, confirmPassword, name, regVis  } = this.state;
+
+        event.preventDefault();
+
         if (regVis) {
             if (password != confirmPassword) {
-                
+                this.setState({ passwordWarning: 'The passwords do not match!' });
             }
             else {
                 api.register(name, email, password)
@@ -55,7 +55,7 @@ class LoginDialog extends React.Component {
     };
 
     renderLoginContent() {
-        const { regVis, email, password, name, confirmPassword } = this.state;
+        const { regVis, email, password, name, confirmPassword, passwordWarning } = this.state;
         if (regVis) {
             return (
                 <DialogContent>
@@ -88,6 +88,7 @@ class LoginDialog extends React.Component {
                         value={password}
                         label="Password"
                         type="password"
+                        errorText={passwordWarning}
                         fullWidth
                         onChange={this.onChange}
                     />
@@ -134,11 +135,11 @@ class LoginDialog extends React.Component {
             )
         }
     };
-    
+
     render() {
         const { classes, onClose, selectedValue, ...other } = this.props;
         const { regVis } = this.state;
- 
+
         return (
             <Dialog onClose={this.handleClose} aria-labelledby="login-dialog" open = {true}>
                 <form onSubmit={this.handleSubmit}>
