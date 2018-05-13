@@ -4,7 +4,7 @@ const md5 = require('md5');
 
 module.exports = {
     create: function (req, res) {
-        db.User.register(new db.User({ username: req.body.username }), req.body.password, function (err, user) {
+        db.User.register(new db.User({ username: req.body.username.toLowerCase().trim() }), req.body.password, function (err, user) {
             if (err) {
                 return res.status(422).json('error registering user');
             }
@@ -25,7 +25,7 @@ module.exports = {
     login: function (req, res) {
         passport.authenticate('local')(req, res, function () {
             const { username, _id } = req.user;
-            res.json({ username: username, id: _id, gravatarId: md5(username.toLowerCase().trim()) });
+            res.json({ username: username.toLowerCase().trim(), id: _id, gravatarId: md5(username.toLowerCase().trim()) });
         });
     },
     currentuser: function (req, res) {
