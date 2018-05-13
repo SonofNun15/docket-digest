@@ -16,3 +16,16 @@
 .court-category {
 	width: 100%;
 }
+
+.docket-group {
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+.docket-group .full-width {
+	width: 100%;
+}
+
+.subscription .nomargin {
+	margin: 0;
+}

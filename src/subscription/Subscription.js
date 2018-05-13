@@ -5,7 +5,7 @@ import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Button from 'material-ui/Button';
-import { DocketInput } from './DocketInput';
+import TextField from 'material-ui/TextField';
 import LoginDialog from './LoginDialog';
 import './Subscription.css';
 
@@ -13,11 +13,20 @@ export class Subscription extends Component {
   state = {
     categoryId: 0,
     courtName: '',
+    docketNumber: '',
     showLoginDialog: false
   };
   
   setCourtCategory = event => {
     this.setState({ categoryId: event.target.value });
+  }
+  
+  setCourt = courtName => {
+    this.setState({ courtName });
+  }
+
+  setDocketNumber = event => {
+    this.setState({ docketNumber: event.target.value });
   }
 
   openLoginDialog = () => {
@@ -28,10 +37,6 @@ export class Subscription extends Component {
   closeLoginDialog = () => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
-  }
-  
-  setCourt = courtName => {
-    this.setState({ courtName });
   }
   
   render() {
@@ -64,8 +69,16 @@ export class Subscription extends Component {
                     placeholder="Search for a court"/>
         </div>
       </div>
-      <div>
-        <DocketInput/>
+      <div className="docket-group">
+        <div><InputLabel htmlFor="docket-number">Docket #:</InputLabel></div>
+	      <div>
+          <TextField
+            id="docket-number"
+            className="full-width nomargin"
+            placeholder="e.g. 5:15-cv-14002"
+            onChange={this.setDocketNumber}
+            margin="normal" />
+        </div>
       </div>
       <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
       {this.state.showLoginDialog && 
