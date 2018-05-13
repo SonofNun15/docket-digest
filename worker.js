@@ -15,6 +15,13 @@ const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
 const whenstart = new Date();
 
+const MAX_FILING_COUNT = 30;
+var filing_count = 0;
+
+var email_count = 0;
+
+const mailgun = require('mailgun-js')({ apiKey: process.env.MAILGUN_API_KEY, domain: 'mg.docketdigest.com' });
+
 db.Court.find().then((db_courts) => {
   for (let i = 0; i < db_courts.length; i++) {
     let current_court = db_courts[i];
@@ -67,31 +74,86 @@ function findOrCreateFiling(item) {
     .catch(err => console.log(err));
 
   function addFiling(docket, item) {
-    //description
-    // console.log((/\[(.*)\]/).exec(item.summary)[1]);
-    // console.log((/\(.*\"(.*)\".*\)/).exec(item.summary)[1]);
-    
     db.Filing.findOne({ docket_url: item.guid })
-      .then(filing => {
+      .then((filing) => {
         if (!filing) {
-          doc_url = (/\(.*\"(.*)\".*\)/).exec(item.summary);
-          db.Filing.create({
-            description: (/\[(.*)\]/).exec(item.summary)[1],
-            published_at: item.pubDate,
-            docket_url: item.guid,
-            document_url: doc_url ? doc_url[1] : null,
-          })
-            .then(filing => {
-              console.log(filing);
-              db.Docket.update(
-                { _id: docket._id },
-                { $push: { filings: filing._id } })
-                .then(docket => console.log(docket))
-                .catch(err => console.log(err));
+
+          if (filing_count < MAX_FILING_COUNT) {
+            filing_count++;
+
+            doc_url = (/\(.*\"(.*)\".*\)/).exec(item.summary);
+            db.Filing.create({
+              description: (/\[(.*)\]/).exec(item.summary)[1],
+              published_at: item.pubDate,
+              docket_url: item.guid,
+              document_url: doc_url ? doc_url[1] : null,
             })
-            .catch(err => console.log(err));
+              .then(filing => {
+                // console.log(filing);
+                console.log('sending emails...');
+
+                // send email after filing is added
+                sendEmails(docket, filing);
+
+                db.Docket.update(
+                  { _id: docket._id },
+                  { $push: { filings: filing._id } })
+                  .then(docket => console.log(docket))
+                  .catch(err => console.log(err));
+              })
+              .catch(err => console.log(err));
+          }
+          else {
+            console.log('max filing limit hit');
+          }
         }
       })
       .catch(err => console.log(err));
+  }
+
+  function sendEmails(docket, filing) {
+    console.log(docket.docket_number);
+
+    db.User.find({ subscriptions: docket.docket_number })
+      .then((users) => {
+        if (users) {
+          for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+
+            console.log('sending email to', user.username);
+
+            sendEmail(docket, filing, user);
+          }
+        }
+        else {
+          console.log('no users found')
+        }
+      })
+      .catch(error => console.log(error));
+  }
+
+  function sendEmail(docket, filing, user) {
+    let data = {
+      from: 'Docket Digest <hello@docketdigest.com>',
+      to: `${user.name} <${user.username}>`,
+      subject: 'Docket Update (' + docket.docket_number + '): ' + filing.description,
+      text: 'There has been an update to your docket! View it at ' + filing.docket_url,
+      html: `
+        <div style="text-align: center; font-family: sans-serif; margin-top: 5em;">
+          <h2>There has been an update to a docket you are following!<br />(${docket.title})</h2>
+          <h3>${filing.description}</h3>
+          <div>
+            <a style="text-decoration: none; display: inline-block; padding: 0.5em; margin: 0.5em; border: 3px solid #3e82f7; border-radius: 3px; color: #fff; background-color: #3e82f7; font-weight: bold;" href="${filing.docket_url}">View Docket</a>
+            <a style="text-decoration: none; display: inline-block; padding: 0.5em; margin: 0.5em; border: 3px solid #666; border-radius: 3px; color: #fff; background-color: #666; font-weight: bold;" href="${filing.document_url}">View Document</a>
+          </div>
+        </div>
+      `,
+    };
+
+    console.log('data', data);
+
+    mailgun.messages().send(data, function (error, body) {
+      console.log(body);
+    });
   }
 }
