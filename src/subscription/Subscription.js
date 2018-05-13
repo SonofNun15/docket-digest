@@ -13,20 +13,25 @@ export class Subscription extends Component {
   state = {
     categoryId: 0,
     courtName: '',
+    docketNumber: '',
     showLoginDialog: false
   };
   
   setCourtCategory = event => {
     this.setState({ categoryId: event.target.value });
   }
+  
+  setCourt = courtName => {
+    this.setState({ courtName });
+  }
+
+  setDocketNumber = event => {
+    this.setState({ docketNumber: event.target.value });
+  }
 
   openLoginDialog = () => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: true });
-  }
-  
-  setCourt = courtName => {
-    this.setState({ courtName });
   }
   
   render() {
@@ -66,7 +71,7 @@ export class Subscription extends Component {
             id="docket-number"
             className="full-width nomargin"
             placeholder="e.g. 5:15-cv-14002"
-            onChange={console.log}
+            onChange={this.setDocketNumber}
             margin="normal" />
         </div>
       </div>
