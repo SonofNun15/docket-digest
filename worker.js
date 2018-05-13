@@ -14,7 +14,7 @@ mongoose.connect(MONGODB_URI, {});
 const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
 const whenstart = new Date();
-db.court.find({}).then((list) => {
+db.Court.find({}).then((list) => {
   // console.log("found something");
   let identifiers = list.map(item => item.docket_identifier);
 
@@ -72,7 +72,7 @@ function findOrCreateFiling(item) {
             .then(filing => {
               console.log(filing);
               db.Docket.update(
-                { _id: docket._id }, 
+                { _id: docket._id },
                 { $push: { filings: filing._id } })
                 .then(docket => console.log(docket))
                 .catch(err => console.log(err));
