@@ -7,18 +7,20 @@ import Select from 'material-ui/Select';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import LoginDialog from './LoginDialog';
+import { withCourts } from './withCourts';
 import './Subscription.css';
 
-export class Subscription extends Component {
+class Subscription extends Component {
   state = {
-    categoryId: 0,
+    category: { identifier: 0 },
     courtName: '',
     docketNumber: '',
     showLoginDialog: false
   };
-  
+
   setCourtCategory = event => {
-    this.setState({ categoryId: event.target.value });
+    const category = this.props.data.find(x => x.identifier === event.target.value);
+    this.setState({ category });
   }
   
   setCourt = courtName => {
@@ -35,6 +37,10 @@ export class Subscription extends Component {
   }
   
   render() {
+    if (!this.props.data) {
+      return <div>Loading...</div>;
+    }
+
     return <div className="subscription">
       <h3>Find a federal case</h3>
       <div>
@@ -42,15 +48,15 @@ export class Subscription extends Component {
         <div className="court-group">
           <FormControl className="court-category">
             <Select
-              value={this.state.categoryId}
+              value={this.state.category.identifier}
               onChange={this.setCourtCategory}
               input={<Input name="court-category" id="court-category" />}>
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
               {
-                getCourtCategories().map(category => 
-                  <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                this.props.data.map(category => 
+                  <MenuItem key={category.identifier} value={category.identifier}>{category.name}</MenuItem>
                 )
               }
             </Select>
@@ -58,7 +64,7 @@ export class Subscription extends Component {
           <div/>
           <Autocomplete 
                     className="court"
-                    suggestions={getCourts().map(x => x.label)}
+                    suggestions={this.props.data.map(x => x.name)}
                     value={this.state.courtName}
                     onChange={this.setCourt}
                     placeholder="Search for a court"/>
@@ -91,6 +97,8 @@ function getCourtCategories() {
     { id: 5, name: 'U.S. Bankruptcy Courts' },
   ];
 }
+
+export default withCourts(Subscription);
 
 function getCourts() {
   return [
