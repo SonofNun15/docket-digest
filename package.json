@@ -30,6 +30,7 @@
   },
   "scripts": {
     "start": "concurrently \" nodemon --exec node server.js\" \"react-scripts start\"",
+    "server": "node server.js",
     "build": "react-scripts build",
     "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "react-scripts test --env=jsdom",

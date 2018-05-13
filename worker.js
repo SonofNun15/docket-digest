@@ -70,6 +70,7 @@ function findOrCreateFiling(item) {
     //description
     // console.log((/\[(.*)\]/).exec(item.summary)[1]);
     // console.log((/\(.*\"(.*)\".*\)/).exec(item.summary)[1]);
+    
     db.Filing.findOne({ docket_url: item.guid })
       .then(filing => {
         if (!filing) {
