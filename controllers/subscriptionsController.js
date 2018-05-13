@@ -9,6 +9,9 @@ module.exports = {
         .then(console.log('worked'))
         .catch(err => console.log(err));
     }
+    else{
+      res.status(401).json("Please login to subscribe");
+    }
     db.Court.findOne({ identifier: sub.court_identifier, category: sub.category_identifier }).then((court) => {
 
       if (!court) {
