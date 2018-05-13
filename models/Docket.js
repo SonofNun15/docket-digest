@@ -8,26 +8,27 @@ const DocketSchema = new Schema({
     docket_number: {
         type: String,
         unique: true,
-        required: true
+        required: true,
     },
 
     docket_url: {
-        type:String,
-        required:true
+        type: String,
+        required: true,
     },
 
     title: {
         type: String,
-        required: true
+        required: true,
     },
 
     created_at: {
         type: Date,
-        default:Date.now
+        default: Date.now,
     },
 
     updated_at: {
-        type:Date
+        type: Date,
+        default: Date.now,
     },
 
     filings: [

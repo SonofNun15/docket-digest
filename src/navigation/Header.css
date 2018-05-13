@@ -1,6 +1,11 @@
+header.app-header {
+  display: flex;
+}
+
 ul {
   list-style: none;
   text-align: left;
+  flex-grow: 1;
 }
 
 li {

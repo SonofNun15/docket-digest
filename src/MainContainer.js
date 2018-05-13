@@ -1,14 +1,17 @@
 import React from 'react';
 import { Subscription } from './subscription/Subscription';
+import logo from './logo.svg';
 
 const MainContainer = () => {
   return (
-    <div className="container">
-      <header>
-        <img src="" alt="Docket Digest" />
-      </header>
-      <div>
-        <Subscription/>
+    <div>
+      <div className="container">
+        <header>
+          <img src={logo} width="320" alt="Docket Digest" />
+        </header>
+        <div>
+          <Subscription/>
+        </div>
       </div>
     </div>
   );

@@ -2,15 +2,17 @@
 	display: flex;
 	flex-flow: column;
 	align-items: center;
-	max-width: 20em;
-	max-height: 20em;
+	max-width: 36.5em;
+	max-height: 50em;
+	padding: 2em;
 }
 
 .court-group {
-	display: flex;
-	flex-flow: row nowrap;
+	display: grid;
+	grid-template-columns: 2fr 1em 1fr;
+	margin-bottom: 2em;
 }
 
 .court-category {
-	width: 10em;
+	width: 100%;
 }

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/open-courts";
 const db = require("./models");
+const courts = require('./stores/courts');
 
 const reader = require('davefeedread');
 const utils = require('daveutils');
@@ -13,7 +14,7 @@ mongoose.connect(MONGODB_URI, {});
 const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
 const whenstart = new Date();
-db.DocketList.find({}).then((list) => {
+db.court.find({}).then((list) => {
   // console.log("found something");
   let identifiers = list.map(item => item.docket_identifier);
 
@@ -28,7 +29,7 @@ db.DocketList.find({}).then((list) => {
       if (!identifiers.includes(docket_identifier)) continue;
 
       findOrCreateFiling(item);
-      console.log(item.title);
+      // console.log(item.title);
     }
 
     console.log("It took " + utils.secondsSince(whenstart) + " seconds to read and parse the feed.");
@@ -45,17 +46,40 @@ function findOrCreateFiling(item) {
         docket_number: item.title.split(' ').shift(),
         docket_url: item.link,
         title: item.title
-      }).then(newDocket => addFiling(newDocket))
-      .catch(err=> console.log(err));
+      }).then(newDocket => addFiling(newDocket, item))
+        .catch(err => console.log(err));
     }
     else {
       // insert filing
-      addFiling(docket);
+      addFiling(docket, item);
     }
   })
-  .catch(err=>console.log(err));
+    .catch(err => console.log(err));
 
-  function addFiling() {
-    console.log("hello");
+  function addFiling(docket, item) {
+    //description
+    // console.log((/\[(.*)\]/).exec(item.summary)[1]);
+    // console.log((/\(.*\"(.*)\".*\)/).exec(item.summary)[1]);
+    db.Filing.findOne({ docket_url: item.guid })
+      .then(filing => {
+        if (!filing) {
+          db.Filing.create({
+            description: (/\[(.*)\]/).exec(item.summary)[1],
+            published_at: item.pubDate,
+            docket_url: item.guid,
+            document_url: (/\(.*\"(.*)\".*\)/).exec(item.summary)[1]
+          })
+            .then(filing => {
+              console.log(filing);
+              db.Docket.update(
+                { _id: docket._id }, 
+                { $push: { filings: filing._id } })
+                .then(docket => console.log(docket))
+                .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+        }
+      })
+      .catch(err => console.log(err));
   }
 }

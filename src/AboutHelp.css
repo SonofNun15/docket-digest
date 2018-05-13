@@ -1,0 +1,10 @@
+.text {
+    text-align: center;
+}
+
+.image-center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}

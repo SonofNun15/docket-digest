@@ -1,14 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
+import Account from './Account';
 
-const Header = () => {
+const Header = ({ user }) => {
   return (
     <header className="app-header">
       <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Help</a></li>
+        <li><Link to="/About">About</Link></li>
+        <li><Link to="/Help">Help</Link></li>
       </ul>
-      <div className="account"></div>
+      <Account user={user} />
     </header>
   );
 };

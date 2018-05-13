@@ -54,22 +54,4 @@ app.use(routes);
 
 const server = app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
-
-  const urlTestFeed = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
-  const timeOutSecs = 30;
-  const whenstart = new Date ();
-
-  feedRead.parseUrl (urlTestFeed, timeOutSecs, function (err, theFeed) {
-    if (err) {
-      console.log (err.message);
-    }
-    else {
-        console.log(theFeed.items[0])
-      for (var i = 0; i < theFeed.items.length; i++) {
-        // console.log ("Item #" + i + ": " + theFeed.items [i].title + ".\n  " + theFeed.items[i].description);
-      }
-
-      console.log ("It took " + utils.secondsSince (whenstart) + " seconds to read and parse the feed.");
-    }
-  });
 });
