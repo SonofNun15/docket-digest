@@ -19,3 +19,7 @@
     height: 40%;
     z-index: 1000;
 }
+
+.loginContent .regButton {
+    text-transform: none;
+}

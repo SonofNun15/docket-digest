@@ -7,7 +7,8 @@ import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog';import './loginDialog.css';
+} from 'material-ui/Dialog';
+import './loginDialog.css';
 
 import { update } from '../components/WithUser';
 
@@ -108,8 +109,11 @@ class LoginDialog extends React.Component {
         }
         else {
             return (
-                <DialogContent>
-                    < Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
+                <DialogContent className="loginContent">
+                    <div>
+                        <font size="1">For new users:</font>
+                        <Button onClick={this.handleToggleRegistration} className="regButton"><font size="1">Create Account</font></Button>
+                    </div>
                     <TextField
                         autoFocus
                         margin="dense"
