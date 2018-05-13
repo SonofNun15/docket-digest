@@ -1,9 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
-    <div>
-        <p>This is the About Page.</p>
-    </div>
+    return (
+        <div>
+            <header>
+                <Link to="/">
+                    <img src="" alt="Docket Digest" />
+                </Link>
+            </header>
+            <p>This is the About Page.</p>
+        </div>
+    )
 }
 
 export default About;
