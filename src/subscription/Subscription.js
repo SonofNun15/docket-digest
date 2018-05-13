@@ -45,6 +45,10 @@ class Subscription extends Component {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
   }
+
+  canSubscribe = () => {
+    return this.state.category && this.state.court && this.state.docketNumber;
+  }
   
   render() {
     if (!this.props.data) {
@@ -92,7 +96,7 @@ class Subscription extends Component {
             margin="normal" />
         </div>
       </div>
-      <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
+      <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>
       {this.state.showLoginDialog && 
         <LoginDialog onClose={this.closeLoginDialog} />}
     </div>;

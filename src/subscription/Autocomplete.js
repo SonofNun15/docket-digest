@@ -17,7 +17,7 @@ function renderInput(inputProps) {
           root: classes.inputRoot,
         },
         ...InputProps,
-      }}x
+      }}
       {...other}
     />
   );
