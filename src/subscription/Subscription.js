@@ -99,14 +99,4 @@ class Subscription extends Component {
   }
 }
 
-function getCourtCategories() {
-  return [
-    { id: 1, name: 'U.S. Supreme Court' },
-    { id: 2, name: 'National Locator' },
-    { id: 3, name: 'U.S. Court of Appeals' },
-    { id: 4, name: 'U.S. District Courts' },
-    { id: 5, name: 'U.S. Bankruptcy Courts' },
-  ];
-}
-
 export default withCourts(Subscription);
