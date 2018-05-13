@@ -25,7 +25,7 @@ module.exports = {
     login: function (req, res) {
         passport.authenticate('local')(req, res, function () {
             const { username, _id } = req.user;
-            res.json({ username: username, id: _id });
+            res.json({ username: username, id: _id, gravatarId: md5(username.toLowerCase().trim()) });
         });
     },
     currentuser: function (req, res) {
