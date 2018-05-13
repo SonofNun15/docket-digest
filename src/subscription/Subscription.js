@@ -75,7 +75,7 @@ class Subscription extends Component {
                     className="court"
                     suggestions={this.state.category.courts 
                             && this.state.category.courts.map(x => x.name)}
-                    value={this.state.courtName}
+                    selection={this.state.courtName}
                     onChange={this.setCourt}
                     placeholder="Search for a court"/>
         </div>
