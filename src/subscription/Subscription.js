@@ -12,6 +12,7 @@ import './Subscription.css';
 export class Subscription extends Component {
   state = {
     categoryId: 0,
+    courtName: '',
     showLoginDialog: false
   };
   
@@ -22,6 +23,10 @@ export class Subscription extends Component {
   openLoginDialog = () => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: true });
+  }
+  
+  setCourt = courtName => {
+    this.setState({ courtName });
   }
   
   render() {
@@ -48,7 +53,9 @@ export class Subscription extends Component {
           <div/>
           <Autocomplete 
                     className="court"
-                    suggestions={getCourts()}
+                    suggestions={getCourts().map(x => x.label)}
+                    value={this.state.courtName}
+                    onChange={this.setCourt}
                     placeholder="Search for a court"/>
         </div>
       </div>
