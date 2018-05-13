@@ -3,12 +3,14 @@ import { Subscription } from './subscription/Subscription';
 
 const MainContainer = () => {
   return (
-    <div className="container">
-      <header>
-        <img src="" alt="Docket Digest" />
-      </header>
-      <div>
-        <Subscription/>
+    <div>
+      <div className="container">
+        <header>
+          <img src="" alt="Docket Digest" />
+        </header>
+        <div>
+          <Subscription/>
+        </div>
       </div>
     </div>
   );
