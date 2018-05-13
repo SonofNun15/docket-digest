@@ -88,33 +88,32 @@ const styles = theme => ({
 });
 
 export class Autocomplete extends Component {
-  state = { selection: '' };
+  state = { selection: '', textValue: '' };
 
 	static getDerivedStateFromProps(props, previousState) {
-		if (props.selection) {
-			return {...previousState, selection: props.selection};
-		}
-		return null;
+    return {...previousState, selection: props.selection || '', textValue: '' };
   }
   
   handleInputChange = event => {
-    if (!event.target.value) {
-      this.setState({ selection: '' });
-    }
+    const value = event.target.value;
+    this.setState({ 
+      textValue: value,
+      selection: '',
+    });
   }
   
   onSelection = value => {
-    this.setState({ selection: value })
+    this.setState({ selection: value, textValue: '' })
     this.props.onChange(value);
   }
   
   render() {
     const { classes, suggestions, placeholder } = this.props;
-    const { selection } = this.state;
+    const { selection, textValue } = this.state;
 
     return (
       <div className={classes.root}>
-        <Downshift selectedItem={selection} onChange={this.onSelection}>
+        <Downshift inputValue={textValue} selectedItem={selection} onChange={this.onSelection}>
           {({ getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }) => (
             <div className={classes.container}>
               {renderInput({
