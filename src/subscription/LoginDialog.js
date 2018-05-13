@@ -38,7 +38,8 @@ class LoginDialog extends React.Component {
                 .then(user => {
                     update(user);
                     this.props.onClose(true);
-                });
+                })
+                .catch(() => this.props.onClose());
             }
         }
         else {
@@ -46,7 +47,8 @@ class LoginDialog extends React.Component {
             .then(user => {
                 update(user);
                 this.props.onClose(true);
-            });
+            })
+            .catch(() => this.props.onClose());
         }
     };
 
