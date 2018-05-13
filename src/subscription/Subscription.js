@@ -43,8 +43,7 @@ class Subscription extends Component {
 
   openLoginDialog = () => {
     if (this.props.user) {
-      Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
-        .then(this.openSuccessMessage);
+      this.subscribe();
     } else {
       console.log(this.state.showLoginDialog);
       this.setState({ showLoginDialog: true });
@@ -54,6 +53,11 @@ class Subscription extends Component {
   closeLoginDialog = () => {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: false });
+  }
+
+  subscribe = () => {
+    Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
+        .then(this.openSuccessMessage);
   }
 
   openSuccessMessage = () => {
