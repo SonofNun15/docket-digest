@@ -125,6 +125,7 @@ export class Autocomplete extends Component {
                   id: 'integration-downshift-simple',
                   onChange: this.handleInputChange,
                   value: inputValue || selection,
+                  disabled: !suggestions,
                 }),
               })}
               {isOpen ? (
@@ -150,7 +151,7 @@ export class Autocomplete extends Component {
 
 Autocomplete.propTypes = {
   classes: PropTypes.object.isRequired,
-  suggestions: PropTypes.array.isRequired,
+  suggestions: PropTypes.array,
   placeholder: PropTypes.string.isRequired,
   selection: PropTypes.string,
   onChange: PropTypes.func,

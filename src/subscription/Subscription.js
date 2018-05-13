@@ -20,7 +20,7 @@ class Subscription extends Component {
 
   setCourtCategory = event => {
     const category = this.props.data.find(x => x.identifier === event.target.value);
-    this.setState({ category });
+    this.setState({ category, courtName: '' });
   }
   
   setCourt = courtName => {
@@ -64,7 +64,8 @@ class Subscription extends Component {
           <div/>
           <Autocomplete 
                     className="court"
-                    suggestions={this.props.data.map(x => x.name)}
+                    suggestions={this.state.category.courts 
+                            && this.state.category.courts.map(x => x.name)}
                     value={this.state.courtName}
                     onChange={this.setCourt}
                     placeholder="Search for a court"/>
