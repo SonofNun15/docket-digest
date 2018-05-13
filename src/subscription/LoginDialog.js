@@ -89,6 +89,7 @@ class LoginDialog extends React.Component {
                         value={password}
                         label="Password"
                         type="password"
+                        error={passwordWarning && passwordWarning.length > 0}
                         errorText={passwordWarning}
                         fullWidth
                         onChange={this.onChange}
