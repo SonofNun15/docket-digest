@@ -39,6 +39,11 @@ class Subscription extends Component {
     console.log(this.state.showLoginDialog);
     this.setState({ showLoginDialog: true });
   }
+
+  closeLoginDialog = () => {
+    console.log(this.state.showLoginDialog);
+    this.setState({ showLoginDialog: false });
+  }
   
   render() {
     if (!this.props.data) {
@@ -88,7 +93,7 @@ class Subscription extends Component {
       </div>
       <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
       {this.state.showLoginDialog && 
-        <LoginDialog />}
+        <LoginDialog onClose={this.closeLoginDialog} />}
     </div>;
   }
 }

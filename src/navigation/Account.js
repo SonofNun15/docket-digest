@@ -6,6 +6,10 @@ import Divider from 'material-ui/Divider';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link, withRouter } from 'react-router-dom';
 
+import { update } from '../components/WithUser';
+
+import api from '../services/api';
+
 import './Account.css';
 
 function gravatarUrl(gravatarId) {
@@ -21,13 +25,12 @@ class Account extends Component {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleProfile = () => { this.handleRoute('/profile'); };
-  handleSubscriptions = () => { this.handleRoute('/subscriptions'); };
-
-  handleRoute = (destination) => {
+  handleAccount = () => {
     const { history, location } = this.props;
 
-    this.setState({ anchorEl: null });
+    this.close();
+
+    const destination = '/account';
 
     if (location.pathname != destination) {
       history.push(destination);
@@ -35,9 +38,15 @@ class Account extends Component {
   };
 
   handleLogout = () => {
+    api.logout();
+    update(null);
 
-    this.setState({ anchorEl: null });
+    this.close();
   };
+
+  close() {
+    this.setState({ anchorEl: null });
+  }
 
   render() {
     const { user } = this.props;
@@ -74,11 +83,8 @@ class Account extends Component {
             },
           }}
         >
-          <MenuItem onClick={this.handleProfile}>
-            Profile
-          </MenuItem>
-          <MenuItem onClick={this.handleSubscriptions}>
-            Manage subscriptions
+          <MenuItem onClick={this.handleAccount}>
+            Account
           </MenuItem>
           <Divider />
           <MenuItem onClick={this.handleLogout}>

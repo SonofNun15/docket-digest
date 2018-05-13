@@ -1,10 +1,15 @@
-.text {
-    text-align: center;
+.text-container.narrow {
+  max-width: 400px;
+  line-height: 1.2;
+}
+
+.text-container.wide {
+    max-width: 600px;
 }
 
 .image-center {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
