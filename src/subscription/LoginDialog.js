@@ -59,9 +59,6 @@ class LoginDialog extends React.Component {
         if (regVis) {
             return (
                 <DialogContent>
-                    <DialogContentText>
-                        Create new account.
-                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -100,6 +97,7 @@ class LoginDialog extends React.Component {
                         name="confirmPassword"
                         value={confirmPassword}
                         label="Confirm Password"
+                        errorText="error"
                         type="password"
                         fullWidth
                         onChange={this.onChange}
@@ -110,9 +108,6 @@ class LoginDialog extends React.Component {
         else {
             return (
                 <DialogContent>
-                    <DialogContentText>
-                        Login using your e-mail address and password.
-                    </DialogContentText>
                     < Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
                     <TextField
                         autoFocus
