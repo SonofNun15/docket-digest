@@ -11,6 +11,7 @@ import Icon from 'material-ui/Icon';
 import LoginDialog from './LoginDialog';
 import { withCourts } from './withCourts';
 import { withUser } from '../components/WithUser';
+import Api from '../services/api';
 import './Subscription.css';
 
 class Subscription extends Component {
@@ -42,7 +43,8 @@ class Subscription extends Component {
 
   openLoginDialog = () => {
     if (this.props.user) {
-      this.openSuccessMessage();
+      Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
+        .then(this.openSuccessMessage);
     } else {
       console.log(this.state.showLoginDialog);
       this.setState({ showLoginDialog: true });
