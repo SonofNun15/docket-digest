@@ -8,8 +8,10 @@ module.exports = {
             if (err) {
                 return res.status(422).json('error registering user');
             }
-
             passport.authenticate('local')(req, res, function () {
+                db.User.update({ username: req.user.username }, { name: req.body.name })
+                    .then(console.log("name added", req.body.name))
+                    .catch(err => console.log(err));
                 const { username, _id } = req.user;
                 res.json({ username: username, id: _id, gravatarId: md5(username.toLowerCase().trim()) });
             });
