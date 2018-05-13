@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './AboutHelp.css';
+import logo from './logo.svg';
 
 const About = () => {
     return (
-        <div>
+        <div className="image-center">
             <header>
                 <Link to="/">
-                    <img src="" alt="Docket Digest" />
+                    <img src={logo} width="320" alt="Docket Digest" />
                 </Link>
             </header>
-            <p>This is the About Page.</p>
+            <p className="text">This is the About Page.</p>
         </div>
     )
 }
