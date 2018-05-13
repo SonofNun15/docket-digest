@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+
 import Header from './navigation/Header';
 import MainContainer from './MainContainer';
+import About from './About';
+import Help from './Help';
 import { update, withUser } from './components/WithUser';
-import axios from 'axios';
 import './App.css';
 
 class App extends Component {
@@ -22,11 +29,16 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
-      <div className="App">
-        <Header />
-        <MainContainer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header user={user} />
+          <Route exact path="/" component={MainContainer} />
+          <Route path="/About" component={About} />
+          <Route path="/Help" component={Help} />
+        </div>
+      </Router>
     );
   }
 }

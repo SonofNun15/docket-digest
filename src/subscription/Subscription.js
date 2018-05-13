@@ -4,6 +4,7 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
+import { DocketInput } from './DocketInput';
 import './Subscription.css';
 
 export class Subscription extends Component {
@@ -17,27 +18,33 @@ export class Subscription extends Component {
   
   render() {
     return <div className="subscription">
-      <div className="court-group">
-        <FormControl className="court-category">
-          <InputLabel htmlFor="court-category">Federal Court</InputLabel>
-          <Select
-            value={this.state.categoryId}
-            onChange={this.setCourtCategory}
-            input={<Input name="court-category" id="court-category" />}>
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {
-              getCourtCategories().map(category => 
-                <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-              )
-            }
-          </Select>
-        </FormControl>
-        <Autocomplete 
-                  className="court"
-                  suggestions={getCourts()}
-                  placeholder="Search for a court"/>
+      <h3>Find a federal case</h3>
+      <div>
+        <InputLabel htmlFor="court-category">Federal Court:</InputLabel>
+        <div className="court-group">
+          <FormControl className="court-category">
+            <Select
+              value={this.state.categoryId}
+              onChange={this.setCourtCategory}
+              input={<Input name="court-category" id="court-category" />}>
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {
+                getCourtCategories().map(category => 
+                  <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                )
+              }
+            </Select>
+          </FormControl>
+          <Autocomplete 
+                    className="court"
+                    suggestions={getCourts()}
+                    placeholder="Search for a court"/>
+        </div>
+      </div>
+      <div>
+        <DocketInput/>
       </div>
     </div>;
   }
