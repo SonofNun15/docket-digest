@@ -2,8 +2,13 @@ img.profile {
   border-radius: 100%;
 }
 
-div.account-area {
+div.account-container {
   display: flex;
   align-items: center;
   padding: 0 20px;
+}
+
+div.account-container .menu-host {
+  display: flex;
+  align-items: center;
 }

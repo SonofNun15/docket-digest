@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "cookie-parser": "^1.4.3",
     "davefeedread": "^0.4.14",
     "downshift": "^1.31.14",
@@ -16,6 +18,7 @@
     "md5": "^2.2.1",
     "mongoose": "^5.1.0",
     "morgan": "^1.9.0",
+    "nodemon": "^1.17.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0",
@@ -26,8 +29,9 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \" nodemon --exec node server.js\" \"react-scripts start\"",
     "build": "react-scripts build",
+    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

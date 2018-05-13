@@ -6,16 +6,23 @@ import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
+import LoginDialog from './LoginDialog';
 import './Subscription.css';
 
 export class Subscription extends Component {
   state = {
     categoryId: 0,
     courtName: '',
+    showLoginDialog: false
   };
   
   setCourtCategory = event => {
     this.setState({ categoryId: event.target.value });
+  }
+
+  openLoginDialog = () => {
+    console.log(this.state.showLoginDialog);
+    this.setState({ showLoginDialog: true });
   }
   
   setCourt = courtName => {
@@ -63,7 +70,9 @@ export class Subscription extends Component {
             margin="normal" />
         </div>
       </div>
-      <Button variant="raised">Subscribe</Button>
+      <Button onClick={this.openLoginDialog} variant="raised">Subscribe</Button>
+      {this.state.showLoginDialog && 
+        <LoginDialog />}
     </div>;
   }
 }

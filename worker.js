@@ -14,26 +14,36 @@ mongoose.connect(MONGODB_URI, {});
 const feed_url = 'http://www.nysd.uscourts.gov/rss/ecfDocketReport.xml';
 const timeOutSecs = 30;
 const whenstart = new Date();
-db.court.find({}).then((list) => {
-  // console.log("found something");
-  let identifiers = list.map(item => item.docket_identifier);
 
-  reader.parseUrl(feed_url, timeOutSecs, function (err, feed) {
-    if (err) return console.log(err.message);
-    // console.log(list);
+db.Court.find().then((db_courts) => {
+  for (let i = 0; i < db_courts.length; i++) {
+    let current_court = db_courts[i];
+    let docket_list = current_court.docket_identifiers;
 
-    for (let i = 0; i < feed.items.length; i++) {
-      let item = feed.items[i];
-      let docket_identifier = item.title.split(' ').shift();
-      // console.log(docket_identifier);
-      if (!identifiers.includes(docket_identifier)) continue;
+    if (docket_list.length < 1) continue;
 
-      findOrCreateFiling(item);
-      // console.log(item.title);
-    }
+    let court_map = courts.find((category) => {
+      return (category.identifier == current_court.category);
+    }).courts.find((court) => {
+      return (court.identifier == current_court.identifier);
+    });
 
-    console.log("It took " + utils.secondsSince(whenstart) + " seconds to read and parse the feed.");
-  });
+    reader.parseUrl(court_map.feed_url, timeOutSecs, function (err, feed) {
+      if (err) return console.log(err.message);
+
+      for (let j = 0; j < feed.items.length; j++) {
+        let item = feed.items[j];
+        let docket_identifier = item.title.split(' ').shift();
+        // console.log(docket_identifier);
+        if (!docket_list.includes(docket_identifier)) continue;
+
+        findOrCreateFiling(item);
+        // console.log(item.title);
+      }
+
+      console.log("It took " + utils.secondsSince(whenstart) + " seconds to read and parse the feed.");
+    });
+  }
 }).catch(err => console.log(err));
 
 function findOrCreateFiling(item) {
@@ -63,16 +73,17 @@ function findOrCreateFiling(item) {
     db.Filing.findOne({ docket_url: item.guid })
       .then(filing => {
         if (!filing) {
+          doc_url = (/\(.*\"(.*)\".*\)/).exec(item.summary);
           db.Filing.create({
             description: (/\[(.*)\]/).exec(item.summary)[1],
             published_at: item.pubDate,
             docket_url: item.guid,
-            document_url: (/\(.*\"(.*)\".*\)/).exec(item.summary)[1]
+            document_url: doc_url ? doc_url[1] : null,
           })
             .then(filing => {
               console.log(filing);
               db.Docket.update(
-                { _id: docket._id }, 
+                { _id: docket._id },
                 { $push: { filings: filing._id } })
                 .then(docket => console.log(docket))
                 .catch(err => console.log(err));
