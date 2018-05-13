@@ -69,6 +69,341 @@ module.exports = [
         name: 'California Central',
         feed_url: 'https://ecf.cacd.uscourts.gov/cgi-bin/rss_outside.pl',
       },
+      {
+        identifier: 'california_northern',
+        name: 'California Northern',
+        feed_url: 'https://ecf.cand.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'california_southern',
+        name: 'California Southern',
+        feed_url: 'https://ecf.casd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'colorado',
+        name: 'Colorado',
+        feed_url: 'https://ecf.cod.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'connecticut',
+        name: 'Connecticut',
+        feed_url: 'https://ecf.ctd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'delaware',
+        name: 'Delaware',
+        feed_url: 'https://ecf.ded.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'district_of_columbia',
+        name: 'District of Columbia',
+        feed_url: 'https://ecf.dcd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'florida_middle',
+        name: 'Florida Middle',
+        feed_url: 'https://ecf.flmd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'florida_southern',
+        name: 'Florida Southern',
+        feed_url: 'https://ecf.flsd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'georgia_middle',
+        name: 'Georgia Middle',
+        feed_url: 'https://ecf.gamd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'guam',
+        name: 'Guam',
+        feed_url: 'https://ecf.gud.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'idaho',
+        name: 'Idaho',
+        feed_url: 'https://ecf.idd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'illinois_central',
+        name: 'Illinois Central',
+        feed_url: 'https://ecf.ilcd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'illinois_northern',
+        name: 'Illinois Northern',
+        feed_url: 'https://ecf.ilnd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'indiana_northern',
+        name: 'Indiana Northern',
+        feed_url: 'https://ecf.innd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'indiana_southern',
+        name: 'Indiana Southern',
+        feed_url: 'https://ecf.insd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'iowa_northern',
+        name: 'Iowa Northern',
+        feed_url: 'https://ecf.iand.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'iowa_southern',
+        name: 'Iowa Southern',
+        feed_url: 'https://ecf.iasd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'kansas',
+        name: 'Kansas',
+        feed_url: 'https://ecf.ksd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'kentucky_western',
+        name: 'Kentucky Western',
+        feed_url: 'https://ecf.kywd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'louisiana_eastern',
+        name: 'Louisiana Eastern',
+        feed_url: 'https://ecf.laed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'louisiana_middle',
+        name: 'Louisiana Middle',
+        feed_url: 'https://ecf.lamd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'louisiana_western',
+        name: 'Louisiana Western',
+        feed_url: 'https://ecf.lawd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'maine',
+        name: 'Maine',
+        feed_url: 'https://ecf.med.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'massachusetts',
+        name: 'Massachusetts',
+        feed_url: 'https://ecf.mad.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'michigan_eastern',
+        name: 'Michigan Eastern',
+        feed_url: 'https://ecf.mied.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'michigan_western',
+        name: 'Michigan Western',
+        feed_url: 'https://ecf.miwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'minnesota',
+        name: 'Minnesota',
+        feed_url: 'https://ecf.mnd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'mississippi_southern',
+        name: 'Mississippi Southern',
+        feed_url: 'https://ecf.mssd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'missouri_eastern',
+        name: 'Missouri Eastern',
+        feed_url: 'https://ecf.moed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'missouri_western',
+        name: 'Missouri Western',
+        feed_url: 'https://ecf.mowd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'montana',
+        name: 'Montana',
+        feed_url: 'https://ecf.mtd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'nebraska',
+        name: 'Nebraska',
+        feed_url: 'https://ecf.ned.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_hampshire',
+        name: 'New Hampshire',
+        feed_url: 'https://ecf.nhd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_jersey',
+        name: 'New Jersey',
+        feed_url: 'https://ecf.njd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_mexico',
+        name: 'New Mexico',
+        feed_url: 'https://ecf.nmd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_york_eastern',
+        name: 'New York Eastern',
+        feed_url: 'https://ecf.nyed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_york_western',
+        name: 'New York Western',
+        feed_url: 'https://ecf.nynd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'new_york_southern',
+        name: 'New York Southern',
+        feed_url: 'https://ecf.nysd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'north_carolina_eastern',
+        name: 'North Carolina Eastern',
+        feed_url: 'https://ecf.nced.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'north_carolina_middle',
+        name: 'North Carolina Middle',
+        feed_url: 'https://ecf.ncmd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'north_carolina_western',
+        name: 'North Carolina Western',
+        feed_url: 'https://ecf.ncwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'northern_mariana_islands',
+        name: 'Northern Mariana Islands',
+        feed_url: 'https://ecf.nmid.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'ohio_northern',
+        name: 'Ohio Northern',
+        feed_url: 'https://ecf.ohnd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'ohio_southern',
+        name: 'Ohio Southern',
+        feed_url: 'https://ecf.ohsd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'oklahoma_western',
+        name: 'Oklahoma Western',
+        feed_url: 'https://ecf.okwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'oregon',
+        name: 'Oregon',
+        feed_url: 'https://ecf.ord.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'pennsylvania_eastern',
+        name: 'Pennsylvania Eastern',
+        feed_url: 'https://ecf.paed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'pennsylvania_western',
+        name: 'Pennsylvania Western',
+        feed_url: 'https://ecf.pawd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'puerto_rico',
+        name: 'Puerto Rico',
+        feed_url: 'https://ecf.prd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'rhode_island',
+        name: 'Rhode Island',
+        feed_url: 'https://ecf.rid.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'south_dakota',
+        name: 'South Dakota',
+        feed_url: 'https://ecf.sdd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'tennessee_eastern',
+        name: 'Tennessee Eastern',
+        feed_url: 'https://ecf.tned.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'tennessee_middle',
+        name: 'Tennessee Middle',
+        feed_url: 'https://ecf.tnmd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'texas_eastern',
+        name: 'Texas Eastern',
+        feed_url: 'https://ecf.txed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'texas_southern',
+        name: 'Texas Southern',
+        feed_url: 'https://ecf.txsd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'texas_western',
+        name: 'Texas Western',
+        feed_url: 'https://ecf.txwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'utah',
+        name: 'Utah',
+        feed_url: 'https://ecf.utd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'vermont',
+        name: 'Vermont',
+        feed_url: 'https://ecf.vtd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'virgin_islands',
+        name: 'Virgin Islands',
+        feed_url: 'https://ecf.vid.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'virginia_western',
+        name: 'Virginia Western',
+        feed_url: 'http://ecf.vawd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'washington_eastern',
+        name: 'Washington Eastern',
+        feed_url: 'https://ecf.waed.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'washington_western',
+        name: 'Washington Western',
+        feed_url: 'https://ecf.wawd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'west_virginia_northern',
+        name: 'West Virginia Northern',
+        feed_url: 'https://ecf.wvnd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'west_virginia_southern',
+        name: 'West Virginia Southern',
+        feed_url: 'https://ecf.wvsd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'wisconsin_eastern',
+        name: 'Wisconsin Eastern',
+        feed_url: 'https://ecf.wied.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'wisconsin_western',
+        name: 'Wisconsin Western',
+        feed_url: 'https://ecf.wiwd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
+      {
+        identifier: 'wyoming',
+        name: 'Wyoming',
+        feed_url: 'https://ecf.wyd.uscourts.gov/cgi-bin/rss_outside.pl',
+      },
     ],
   },
   {

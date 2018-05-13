@@ -70,7 +70,9 @@ function findOrCreateFiling(item) {
           })
             .then(filing => {
               console.log(filing);
-              db.Docket.update({ _id: docket._id }, { $push: { filings: filing._id } })
+              db.Docket.update(
+                { _id: docket._id }, 
+                { $push: { filings: filing._id } })
                 .then(docket => console.log(docket))
                 .catch(err => console.log(err));
             })
