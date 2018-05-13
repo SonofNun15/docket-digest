@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { update } from '../components/WithUser';
 
@@ -32,7 +31,7 @@ class Account extends Component {
 
     const destination = '/account';
 
-    if (location.pathname != destination) {
+    if (location.pathname !== destination) {
       history.push(destination);
     }
   };

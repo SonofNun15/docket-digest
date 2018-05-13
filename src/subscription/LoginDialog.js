@@ -1,8 +1,5 @@
 import React from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
 import Button from 'material-ui/Button';
-import { FormControl } from 'material-ui/Form';
-import { Link } from 'react-router-dom';
 import api from '../services/api';
 import TextField from 'material-ui/TextField';
 import Dialog, {
@@ -10,7 +7,8 @@ import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog';import './loginDialog.css';
+} from 'material-ui/Dialog';
+import './loginDialog.css';
 
 import { update } from '../components/WithUser';
 
@@ -26,11 +24,14 @@ class LoginDialog extends React.Component {
         this.props.onClose();
     };
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
         const { email, password, confirmPassword, name, regVis  } = this.state;
+
+        event.preventDefault();
+
         if (regVis) {
             if (password != confirmPassword) {
-                
+                this.setState({ passwordWarning: 'The passwords do not match!' });
             }
             else {
                 api.register(name, email, password)
@@ -59,7 +60,7 @@ class LoginDialog extends React.Component {
     };
 
     renderLoginContent() {
-        const { regVis, email, password, name, confirmPassword } = this.state;
+        const { regVis, email, password, name, confirmPassword, passwordWarning } = this.state;
         if (regVis) {
             return (
                 <DialogContent>
@@ -92,6 +93,8 @@ class LoginDialog extends React.Component {
                         value={password}
                         label="Password"
                         type="password"
+                        error={passwordWarning && passwordWarning.length > 0}
+                        errorText={passwordWarning}
                         fullWidth
                         onChange={this.onChange}
                     />
@@ -111,8 +114,11 @@ class LoginDialog extends React.Component {
         }
         else {
             return (
-                <DialogContent>
-                    < Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
+                <DialogContent className="loginContent">
+                    <div>
+                        <font size="1">For new users:</font>
+                        <Button onClick={this.handleToggleRegistration} className="regButton"><font size="1">Create Account</font></Button>
+                    </div>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -138,11 +144,11 @@ class LoginDialog extends React.Component {
             )
         }
     };
-    
+
     render() {
         const { classes, onClose, selectedValue, ...other } = this.props;
         const { regVis } = this.state;
- 
+
         return (
             <Dialog onClose={this.handleClose} aria-labelledby="login-dialog" open = {true}>
                 <form onSubmit={this.handleSubmit}>
