@@ -2,7 +2,9 @@ import axios from 'axios';
 
 class Api {
   login(username, password) {
-    axios.post('/api/users/login', {username, password});
+    return axios.post('/api/users/login', {username, password})
+        .then(result => result.data)
+        .catch(err => console.error(err));
   }
   logout() {
     axios.delete('/api/users/login');

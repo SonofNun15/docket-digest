@@ -12,60 +12,80 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';import './loginDialog.css';
 
+import { update } from '../components/WithUser';
+
 class LoginDialog extends React.Component {
     state = {
         email : "",
-        password : ""
+        password : "",
+        regVis : false
     };
     handleClose = () => {
-      this.props.onClose();
+        this.props.onClose();
     };
 
     handleSubmit = () => {
         const { email, password } = this.state;
-        api.login(email, password);
+        api.login(email, password)
+            .then(user => update(user));
         this.props.onClose();
+    };
+
+    handleToggleRegistration = () => {
+        const { regVis } = this.state;
+        this.setState({regVis:!regVis});
     };
 
     onChange = (event) => {
         this.setState({[event.target.name]:event.target.value});
     };
-    
+
+    renderLoginContent() {
+        const { regVis, email, password } = this.state;
+        if (regVis) {
+            return ;
+        }
+        else {
+            return (
+                <DialogContent>
+                    <DialogContentText>
+                        Login using your e-mail address and password.
+                    </DialogContentText>
+                    <Button onClick={this.handleToggleRegistration}><font size="2">Create Account</font></Button>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        name="email"
+                        value={email}
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                    <TextField
+                        margin="dense"
+                        id="password"
+                        name="password"
+                        value={password}
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        onChange={this.onChange}
+                    />
+                </DialogContent>
+            )
+        }
+    };
+
     render() {
         const { classes, onClose, selectedValue, ...other } = this.props;
-        const { email, password } = this.state;
 
         return (
             <Dialog onClose={this.handleClose} aria-labelledby="login-dialog" open = {true}>
                 <form onSubmit={this.handleSubmit}>
                     <DialogTitle id="login-dialog">User Login</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Login using your e-mail address and password.
-                        </DialogContentText>
-                        <Link to="/Help"><font size="2">Create Account</font></Link>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="email"
-                            name="email"
-                            value={email}
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                            onChange={this.onChange}
-                        />
-                        <TextField
-                            margin="dense"
-                            id="password"
-                            name="password"
-                            value={password}
-                            label="Password"
-                            type="password"
-                            fullWidth
-                            onChange={this.onChange}
-                        />
-                    </DialogContent>
+                    {this.renderLoginContent()}
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
@@ -75,7 +95,7 @@ class LoginDialog extends React.Component {
                         </Button>
                     </DialogActions>
                 </form>
-            </Dialog>        
+            </Dialog>
         )
     }
 }
