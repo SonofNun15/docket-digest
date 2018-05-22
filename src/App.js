@@ -9,7 +9,7 @@ import Header from './navigation/Header';
 import MainContainer from './MainContainer';
 import About from './About';
 import Help from './Help';
-import { update, withUser } from './components/WithUser';
+import { update, withUser } from './helpers/WithUser';
 import './App.css';
 
 class App extends Component {

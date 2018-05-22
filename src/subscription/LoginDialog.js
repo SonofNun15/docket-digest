@@ -10,7 +10,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import './loginDialog.css';
 
-import { update } from '../components/WithUser';
+import { update } from '../helpers/WithUser';
 
 class LoginDialog extends React.Component {
     state = {

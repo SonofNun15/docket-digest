@@ -10,7 +10,7 @@ import Snackbar from 'material-ui/Snackbar';
 import Icon from 'material-ui/Icon';
 import LoginDialog from './LoginDialog';
 import { withCourts } from './withCourts';
-import { withUser } from '../components/WithUser';
+import { withUser } from '../helpers/WithUser';
 import Api from '../services/api';
 import './Subscription.css';
 
