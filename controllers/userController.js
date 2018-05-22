@@ -4,16 +4,13 @@ const md5 = require('md5');
 
 module.exports = {
     create: function (req, res) {
-        db.User.register(new db.User({ username: req.body.username.toLowerCase().trim() }), req.body.password, function (err, user) {
+        db.User.register(new db.User({ username: req.body.username, name: req.body.name }), req.body.password, function (err, user) {
             if (err) {
                 return res.status(422).json('error registering user');
             }
             passport.authenticate('local')(req, res, function () {
-                db.User.update({ username: req.user.username }, { name: req.body.name })
-                    .then(console.log("name added", req.body.name))
-                    .catch(err => console.log(err));
                 const { username, _id } = req.user;
-                res.json({ username: username, id: _id, gravatarId: md5(username.toLowerCase().trim()) });
+                res.json({ username: username, id: _id, gravatarId: md5(username) });
             });
         });
     },
@@ -27,7 +24,7 @@ module.exports = {
     login: function (req, res) {
         passport.authenticate('local')(req, res, function () {
             const { username, _id } = req.user;
-            res.json({ username: username.toLowerCase().trim(), id: _id, gravatarId: md5(username.toLowerCase().trim()) });
+            res.json({ username: username.toLowerCase().trim(), id: _id, gravatarId: md5(username) });
         });
     },
     currentuser: function (req, res) {
@@ -36,6 +33,6 @@ module.exports = {
                 message: 'You are not currently logged in.'
             });
         }
-        res.json({ username: req.user.username, id: req.user._id, gravatarId: md5(req.user.username.toLowerCase().trim()) });
+        res.json({ username: req.user.username, id: req.user._id, gravatarId: md5(req.user.username) });
     }
 };
