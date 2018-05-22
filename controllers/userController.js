@@ -31,15 +31,30 @@ module.exports = {
     },
 
     changePassword: function (req, res) {
-        
+        if (req.user && req.body.password) {
+            db.User.findByUsername(req.user.username, function (err, user) {
+                if (err) return res.status(422).json("Error finding user");
+                if (!user) return res.status(422).json("No matching user found");
+                user.setPassword(req.body.password, function (err, user) {
+                    if (err) return res.status(422).json("Error changing password");
+                    user.save(function (err) {
+                        if (err) console.log(err);
+                        res.json("Password changed successfully");
+                    });
+                });
+            });
+        }
+        else {
+            res.status(401).json("Must be logged in to change password");
+        }
     },
 
     modifyUser: function (req, res) {
         if (req.user) {
             const { username, name } = req.body;
-            const userUpdate ={};
-            if(username)userUpdate.username = username;
-            if(name)userUpdate.name = name;
+            const userUpdate = {};
+            if (username) userUpdate.username = username;
+            if (name) userUpdate.name = name;
             db.User.findOneAndUpdate({ _id: req.user._id }, userUpdate, { new: true })
                 .then(dbUser => {
                     passport.authenticate('local')(req, res, function () {

@@ -11,4 +11,7 @@ router.route("/login")
     .post(userController.login)
     .delete(userController.logout);
 
+router.route("/password")
+    .put(userController.changePassword);
+
 module.exports = router;
