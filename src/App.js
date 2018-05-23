@@ -6,10 +6,13 @@ import {
 } from 'react-router-dom';
 
 import Header from './navigation/Header';
-import MainContainer from './MainContainer';
-import About from './About';
-import Help from './Help';
+
+import MainContainer from './pages/MainContainer';
+import About from './pages/About';
+import Help from './pages/Help';
+
 import { update, withUser } from './helpers/WithUser';
+
 import './App.css';
 
 class App extends Component {
