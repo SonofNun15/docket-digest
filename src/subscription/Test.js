@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { all as starwarsNames } from 'starwars-names';
 import MuiDownshift from 'mui-downshift';
-import { ListItem, ListItemText } from 'material-ui/List';
+import { ListItem, ListItemText } from '@material-ui/core/List';
 
 const items = starwarsNames.map((name, identifier) => ({ name, identifier }));
 

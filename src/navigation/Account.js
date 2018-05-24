@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Menu, { MenuItem } from 'material-ui/Menu';
-import Divider from 'material-ui/Divider';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withRouter } from 'react-router-dom';
 

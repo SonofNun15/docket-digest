@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MuiDownshift from 'mui-downshift';
-import { ListItem, ListItemText } from 'material-ui/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 function getSuggestions(inputValue, suggestions) {
   return suggestions.filter(suggestion =>
