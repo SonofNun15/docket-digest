@@ -9,13 +9,14 @@
 
 .court-group {
 	display: grid;
-	grid-template-columns: 1fr 1em 1fr;
 	margin-bottom: 2em;
+	flex-wrap: wrap;
 }
 
 @media (min-width: 600px) {
 	.court-group {
 		width: 36.5em;
+		grid-template-columns: 17.75em 1em 17.75em;
 	}
 }
 

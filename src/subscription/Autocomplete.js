@@ -55,7 +55,6 @@ export class Autocomplete extends Component {
             value: textValue,
             placeholder: placeholder,
             disabled: !suggestions,
-            endAdornment: null,
           })}
           selectedItem={selection} 
           onChange={this.onSelection}
