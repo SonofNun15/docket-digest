@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withRouter } from 'react-router-dom';
 
-import { update } from '../components/WithUser';
+import { update } from '../helpers/WithUser';
 
 import api from '../services/api';
 

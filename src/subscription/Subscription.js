@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Autocomplete from './Autocomplete';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,10 +8,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import Icon from '@material-ui/core/Icon';
-import LoginDialog from './LoginDialog';
+import Autocomplete from '../components/Autocomplete';
+import LoginDialog from '../components/LoginDialog';
+
 import { withCourts } from './withCourts';
-import { withUser } from '../components/WithUser';
+import { withUser } from '../helpers/WithUser';
 import Api from '../services/api';
+
 import './Subscription.css';
 
 class Subscription extends Component {

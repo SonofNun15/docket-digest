@@ -9,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import './loginDialog.css';
 
-import { update } from '../components/WithUser';
+import { update } from '../helpers/WithUser';
 
 class LoginDialog extends React.Component {
     state = {
