@@ -15,6 +15,7 @@
     "express-session": "^1.15.6",
     "feedparser": "^2.2.9",
     "http": "0.0.0",
+    "mailgun-js": "^0.18.0",
     "md5": "^2.2.1",
     "mongoose": "^5.1.0",
     "morgan": "^1.9.0",
