@@ -13,10 +13,17 @@ function getSuggestions(inputValue, suggestions) {
 export class Autocomplete extends Component {
   state = { selection: null, textValue: '' };
 
-	static getDerivedStateFromProps(props, previousState) {
-    return {...previousState, selection: props.selection, textValue: '' };
+  static propTypes = {
+    suggestions: PropTypes.array,
+    placeholder: PropTypes.string.isRequired,
+    selection: PropTypes.object,
+    onChange: PropTypes.func,
+  };
+
+  static getDerivedStateFromProps(props, previousState) {
+    return { ...previousState, selection: props.selection, textValue: '' };
   }
-  
+
   handleInputChange = value => {
     if (this.state.selection && this.state.selection.name !== value) {
       this.setState({
@@ -26,12 +33,12 @@ export class Autocomplete extends Component {
     } else {
       this.setState({ textValue: value });
     }
-  }
-  
+  };
+
   onSelection = value => {
     this.setState({ selection: value })
     this.props.onChange(value);
-  }
+  };
 
   itemToString = item => item ? item.name : '';
 
@@ -41,8 +48,8 @@ export class Autocomplete extends Component {
         <ListItemText primary={item.primary || item.name} />
       </ListItem>
     ) : null;
-  }
-  
+  };
+
   render() {
     const { suggestions, placeholder } = this.props;
     const { selection, textValue } = this.state;
@@ -52,26 +59,19 @@ export class Autocomplete extends Component {
       <div>
         <MuiDownshift
           itemToString={this.itemToString}
-			    getInputProps={() => ({ 
+          getInputProps={() => ({
             value: textValue,
             placeholder: placeholder,
             disabled: !suggestions,
           })}
-          selectedItem={selection} 
+          selectedItem={selection}
           onChange={this.onSelection}
           onInputValueChange={this.handleInputChange}
           items={suggestionResults}
-          getListItem={this.getListItem}/>
+          getListItem={this.getListItem} />
       </div>
     );
   }
 }
-
-Autocomplete.propTypes = {
-  suggestions: PropTypes.array,
-  placeholder: PropTypes.string.isRequired,
-  selection: PropTypes.object,
-  onChange: PropTypes.func,
-};
 
 export default Autocomplete;
