@@ -51,7 +51,7 @@ class Account extends Component {
     const { user } = this.props;
 
     if (user == null) {
-        return <div />
+      return <div />
     }
 
     const { gravatarId } = user;
@@ -67,8 +67,8 @@ class Account extends Component {
           aria-label="More"
           aria-haspopup="true"
         >
-            <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
-            <MoreVertIcon />
+          <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
+          <MoreVertIcon />
         </div>
         <Menu
           id="long-menu"
@@ -76,7 +76,7 @@ class Account extends Component {
           open={Boolean(anchorEl)}
           onClose={this.close}
           PaperProps={{
-              style: {
+            style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: 200,
             },

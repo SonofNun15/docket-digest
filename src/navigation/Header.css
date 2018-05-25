@@ -2,19 +2,19 @@ header.app-header {
   display: flex;
 }
 
-ul {
+header.app-header ul {
   list-style: none;
   text-align: left;
   flex-grow: 1;
 }
 
-li {
+header.app-header li {
   display: inline-block;
   font-size: 0.8rem;
   padding: 10px;
 }
 
-a {
+header.app-header a {
   color: #3E82F7;
   text-decoration: none;
 }

@@ -61,7 +61,7 @@ class Subscription extends Component {
 
   subscribe = () => {
     Api.subscribe(this.state.category, this.state.court, this.state.docketNumber)
-        .then(this.openSuccessMessage);
+      .then(this.openSuccessMessage);
   }
 
   openSuccessMessage = () => {
@@ -90,7 +90,8 @@ class Subscription extends Component {
             <Select
               value={this.state.category.identifier}
               onChange={this.setCourtCategory}
-              input={<Input name="court-category" id="court-category" />}>
+              input={<Input name="court-category" id="court-category" />}
+            >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
@@ -108,7 +109,8 @@ class Subscription extends Component {
                             && this.state.category.courts.map(x => x.name)}
                     selection={this.state.court ? this.state.court.name : ''}
                     onChange={this.setCourt}
-                    placeholder="Search for a court"/>
+                    placeholder="Search for a court"
+          />
         </div>
       </div>
       <div className="docket-group">
@@ -119,7 +121,8 @@ class Subscription extends Component {
             className="full-width nomargin"
             placeholder="e.g. 5:15-cv-14002"
             onChange={this.setDocketNumber}
-            margin="normal" />
+            margin="normal"
+          />
         </div>
       </div>
       <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>

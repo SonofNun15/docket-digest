@@ -13,7 +13,7 @@ const MainContainer = () => {
           </Link>
         </header>
         <div>
-          <Subscription/>
+          <Subscription />
         </div>
       </div>
     </div>

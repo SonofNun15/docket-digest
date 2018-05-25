@@ -90,13 +90,13 @@ const styles = theme => ({
 export class Autocomplete extends Component {
   state = { selection: '', textValue: '' };
 
-	static getDerivedStateFromProps(props, previousState) {
-    return {...previousState, selection: props.selection || '', textValue: '' };
+  static getDerivedStateFromProps(props, previousState) {
+    return { ...previousState, selection: props.selection || '', textValue: '' };
   }
-  
+
   handleInputChange = event => {
     const value = event.target.value;
-    this.setState({ 
+    this.setState({
       textValue: value,
       selection: '',
     });
@@ -105,12 +105,12 @@ export class Autocomplete extends Component {
   handleInputBlur = () => {
     this.setState({ textValue: '' });
   }
-  
+
   onSelection = value => {
     this.setState({ selection: value, textValue: '' })
     this.props.onChange(value);
   }
-  
+
   render() {
     const { classes, suggestions, placeholder } = this.props;
     const { selection, textValue } = this.state;
