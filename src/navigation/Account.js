@@ -8,12 +8,9 @@ import { withRouter } from 'react-router-dom';
 import { update } from '../helpers/WithUser';
 
 import api from '../services/api';
+import gravatarUrl from '../services/gravatar';
 
 import './Account.css';
-
-function gravatarUrl(gravatarId) {
-  return `https://www.gravatar.com/avatar/${gravatarId}?s=96`
-}
 
 class Account extends Component {
   state = {
