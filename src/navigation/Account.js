@@ -9,12 +9,9 @@ import { withRouter } from 'react-router-dom';
 import { update } from '../helpers/WithUser';
 
 import api from '../services/api';
+import gravatarUrl from '../services/gravatar';
 
 import './Account.css';
-
-function gravatarUrl(gravatarId) {
-  return `https://www.gravatar.com/avatar/${gravatarId}?s=96`
-}
 
 class Account extends Component {
   state = {
@@ -52,7 +49,7 @@ class Account extends Component {
     const { user } = this.props;
 
     if (user == null) {
-        return <div />
+      return <div />
     }
 
     const { gravatarId } = user;
@@ -68,8 +65,8 @@ class Account extends Component {
           aria-label="More"
           aria-haspopup="true"
         >
-            <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
-            <MoreVertIcon />
+          <img src={gravatarUrl(gravatarId)} width="48" height="48" className="profile" alt="profile" />
+          <MoreVertIcon />
         </div>
         <Menu
           id="long-menu"
@@ -77,7 +74,7 @@ class Account extends Component {
           open={Boolean(anchorEl)}
           onClose={this.close}
           PaperProps={{
-              style: {
+            style: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: 200,
             },
