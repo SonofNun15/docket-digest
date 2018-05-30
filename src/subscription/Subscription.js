@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Input, { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl } from 'material-ui/Form';
-import Select from 'material-ui/Select';
-import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Snackbar from 'material-ui/Snackbar';
-import Icon from 'material-ui/Icon';
-
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
+import Icon from '@material-ui/core/Icon';
 import Autocomplete from '../components/Autocomplete';
 import LoginDialog from '../components/LoginDialog';
 
@@ -35,8 +35,8 @@ class Subscription extends Component {
     this.setState({ category, court: null });
   };
 
-  setCourt = courtName => {
-    const court = this.state.category.courts.find(x => x.name === courtName);
+  setCourt = court => {
+    // const court = this.state.category.courts.find(x => x.identifier === courtSelection.value);
     this.setState({ court });
   };
 
@@ -106,9 +106,8 @@ class Subscription extends Component {
             <div/>
             <Autocomplete
                       className="court"
-                      suggestions={this.state.category.courts
-                              && this.state.category.courts.map(x => x.name)}
-                      selection={this.state.court ? this.state.court.name : ''}
+                      suggestions={this.state.category.courts}
+                      selection={this.state.court}
                       onChange={this.setCourt}
                       placeholder="Search for a court"
             />
