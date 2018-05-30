@@ -18,3 +18,11 @@ a {
   color: #3E82F7;
   text-decoration: none;
 }
+
+.loginBtn {
+  font-size: 0.8rem;
+  margin-top: 16px;
+  margin-right: 26px;
+  padding: 10px;
+  cursor: pointer;
+}
