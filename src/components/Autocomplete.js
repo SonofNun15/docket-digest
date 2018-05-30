@@ -21,7 +21,7 @@ export class Autocomplete extends Component {
   };
 
   static getDerivedStateFromProps(props, previousState) {
-    return { ...previousState, selection: props.selection, textValue: '' };
+    return { ...previousState, selection: props.selection };
   }
 
   handleInputChange = value => {
@@ -30,6 +30,7 @@ export class Autocomplete extends Component {
         textValue: value,
         selection: null,
       });
+      this.props.onChange(null);
     } else {
       this.setState({ textValue: value });
     }
