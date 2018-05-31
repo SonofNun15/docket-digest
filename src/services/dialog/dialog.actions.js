@@ -1,4 +1,5 @@
 import React from 'react';
+import LoginDialog from '../../components/LoginDialog';
 
 export const OPEN_DIALOG = 'OPEN_DIALOG';
 export const CLOSE_DIALOG = 'CLOSE_DIALOG';
@@ -16,9 +17,9 @@ export function closeDialog() {
   };
 }
 
-export function openLoginDialog() {
+export function openLoginDialog(onLoginSuccess) {
   return {
     type: OPEN_DIALOG,
-    dialogContent: null
+    dialogContent: <LoginDialog onSuccess={onLoginSuccess}/>
   };
 }

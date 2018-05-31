@@ -1,12 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
-import api from '../services/api';
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import api from '../services/api';
+import { closeDialog } from '../services/dialog/dialog.actions';
 import './loginDialog.css';
 
 import { update } from '../helpers/WithUser';
@@ -20,8 +20,12 @@ class LoginDialog extends React.Component {
     regVis: false,
   };
 
+  static defaultProps = {
+    onSuccess: () => null
+  }
+
   handleClose = () => {
-    this.props.onClose();
+    this.props.dispatch(closeDialog());
   };
 
   handleSubmit = (event) => {
@@ -33,20 +37,20 @@ class LoginDialog extends React.Component {
       if (password != confirmPassword) {
         this.setState({ passwordWarning: 'The passwords do not match!' });
       } else {
+        this.props.dispatch(closeDialog());
         api.register(name, email, password)
           .then(user => {
             update(user);
-            this.props.onClose(true);
-          })
-          .catch(() => this.props.onClose());
+            this.props.onSuccess();
+          });
       }
     } else {
+      this.props.dispatch(closeDialog());
       api.login(email, password)
         .then(user => {
           update(user);
-          this.props.onClose(true);
-        })
-        .catch(() => this.props.onClose());
+          this.props.onSuccess();
+        });
     }
   };
 
@@ -149,24 +153,22 @@ class LoginDialog extends React.Component {
     const { regVis } = this.state;
 
     return (
-      <Dialog onClose={this.handleClose} aria-labelledby="login-dialog" open={true}>
-        <form onSubmit={this.handleSubmit}>
-          <DialogTitle id="login-dialog">
-            {regVis ? "Create Account" : "User Login"}
-          </DialogTitle>
-          {this.renderLoginContent()}
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button type="submit" color="primary">
-              Submit
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
+      <form onSubmit={this.handleSubmit}>
+        <DialogTitle id="login-dialog">
+          {regVis ? "Create Account" : "User Login"}
+        </DialogTitle>
+        {this.renderLoginContent()}
+        <DialogActions>
+          <Button onClick={this.handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button type="submit" color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </form>
     )
   }
 }
 
-export default LoginDialog;
+export default connect()(LoginDialog);

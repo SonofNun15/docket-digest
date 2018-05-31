@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Header.css';
 import Account from './Account';
-import LoginDialog from '../components/LoginDialog';
+import { openLoginDialog } from '../services/dialog/dialog.actions';
 
 class Header extends Component {
-  state = {
-    showLoginDialog: false,
-  };
-
   openLoginDialog = () => {
-    this.setState({ showLoginDialog: true });
-  }
-
-  closeLoginDialog = success => {
-    this.setState({ showLoginDialog: false });
+    this.props.dispatch(openLoginDialog());
   }
 
   renderLoginOrAccountLink() {
@@ -25,11 +18,7 @@ class Header extends Component {
     }
     else {
       return (
-        <div>
-          <div className="loginBtn" onClick={this.openLoginDialog}>Login</div>
-          {this.state.showLoginDialog &&
-            <LoginDialog onClose={this.closeLoginDialog} />}
-        </div>
+        <div className="loginBtn" onClick={this.openLoginDialog}>Login</div>
       )
     }
   };
@@ -45,4 +34,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect()(Header);
