@@ -8,12 +8,12 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '../components/Autocomplete';
-import LoginDialog from '../components/LoginDialog';
 
 import { withCourts } from './withCourts';
 import { withUser } from '../helpers/WithUser';
 import Api from '../services/api';
 import { openSnackbar, snackbarTypes } from '../services/snackbar/snackbar.actions';
+import { openLoginDialog } from '../services/dialog/dialog.actions';
 
 import './Subscription.css';
 
@@ -21,8 +21,7 @@ class Subscription extends Component {
   state = {
     category: { identifier: 0 },
     court: null,
-    docketNumber: '',
-    showLoginDialog: false
+    docketNumber: ''
   };
 
   setCourtCategory = event => {
@@ -47,14 +46,7 @@ class Subscription extends Component {
     if (this.props.user) {
       this.subscribe();
     } else {
-      this.setState({ showLoginDialog: true });
-    }
-  };
-
-  closeLoginDialog = success => {
-    this.setState({ showLoginDialog: false });
-    if (success) {
-      this.subscribe();
+      this.props.dispatch(openLoginDialog(this.subscribe));
     }
   };
 
@@ -121,8 +113,6 @@ class Subscription extends Component {
           </div>
         </div>
         <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>
-        {this.state.showLoginDialog &&
-          <LoginDialog onClose={this.closeLoginDialog} />}
       </div>
     );
   }
