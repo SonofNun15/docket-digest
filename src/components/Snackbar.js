@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Snackbar from '@material-ui/core/Snackbar';
+import MuiSnackbar from '@material-ui/core/Snackbar';
 import Icon from '@material-ui/core/Icon';
 import { snackbarTypes, closeSnackbar } from '../services/snackbar/snackbar.actions';
 import './Snackbar.css';
 
-const Test = ({ open, message, snackbarType, dispatchCloseSnackbar }) => (
-  <Snackbar
+const Snackbar = ({ open, message, snackbarType, dispatchCloseSnackbar }) => (
+  <MuiSnackbar
     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     open={open}
     onClose={dispatchCloseSnackbar}
@@ -26,4 +26,4 @@ export default connect(
   dispatch => ({
     dispatchCloseSnackbar: () => dispatch(closeSnackbar())
   })
-)(Test);
+)(Snackbar);
