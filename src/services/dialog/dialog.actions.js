@@ -18,8 +18,5 @@ export function closeDialog() {
 }
 
 export function openLoginDialog(onLoginSuccess) {
-  return {
-    type: OPEN_DIALOG,
-    dialogContent: <LoginDialog onSuccess={onLoginSuccess}/>
-  };
+  return openDialog(<LoginDialog onSuccess={onLoginSuccess}/>);
 }
