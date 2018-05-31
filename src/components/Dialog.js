@@ -5,7 +5,7 @@ import { closeDialog } from '../services/dialog/dialog.actions';
 
 const Dialog = ({ open, dialogContent, dispatchCloseDialog }) => (
   <MuiDialog onClose={dispatchCloseDialog} aria-labelledby="dialog" open={open}>
-    {dialogContent}
+    {dialogContent || <div/>}
   </MuiDialog>
 );
 
