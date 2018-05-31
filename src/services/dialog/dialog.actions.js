@@ -3,10 +3,10 @@ import React from 'react';
 export const OPEN_DIALOG = 'OPEN_DIALOG';
 export const CLOSE_DIALOG = 'CLOSE_DIALOG';
 
-export function openDialog(dialogOptions) {
+export function openDialog(dialogContent) {
   return {
     type: OPEN_DIALOG,
-    dialogOptions
+    dialogContent
   };
 }
 
@@ -19,10 +19,6 @@ export function closeDialog() {
 export function openLoginDialog() {
   return {
     type: OPEN_DIALOG,
-    dialogOptions: {
-      header: <div>Login header</div>,
-      content: <div>Login content</div>,
-      footer: <div>Login footer</div>
-    }
+    dialogContent: null
   };
 }

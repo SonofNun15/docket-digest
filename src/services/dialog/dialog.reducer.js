@@ -3,11 +3,7 @@ import { OPEN_DIALOG, CLOSE_DIALOG } from './dialog.actions';
 
 const initialState = {
   open: false,
-  dialogOptions: {
-    header: <div/>,
-    content: <div/>,
-    footer: <div/>,
-  }
+  dialogContent: null
 }
 
 export function dialog(state = initialState, action) {
@@ -15,7 +11,7 @@ export function dialog(state = initialState, action) {
     return {
       ...state,
       open: true,
-      dialogOptions: action.dialogOptions,
+      dialogContent: action.dialogContent,
     };
   } else if (action.type === CLOSE_DIALOG) {
     return {
