@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -14,6 +15,7 @@ import LoginDialog from '../components/LoginDialog';
 import { withCourts } from './withCourts';
 import { withUser } from '../helpers/WithUser';
 import Api from '../services/api';
+import { openSnackbar, snackbarTypes } from '../services/snackbar.action';
 
 import './Subscription.css';
 
@@ -22,8 +24,7 @@ class Subscription extends Component {
     category: { identifier: 0 },
     court: null,
     docketNumber: '',
-    showLoginDialog: false,
-    showSuccessMessage: false
+    showLoginDialog: false
   };
 
   setCourtCategory = event => {
@@ -65,11 +66,7 @@ class Subscription extends Component {
   };
 
   openSuccessMessage = () => {
-    this.setState({ showSuccessMessage: true });
-  };
-
-  closeSuccessMessage = () => {
-    this.setState({ showSuccessMessage: false });
+    this.props.dispatch(openSnackbar('You have been successfully subscribed to this docket', snackbarTypes.success));
   };
 
   canSubscribe = () => {
@@ -128,22 +125,9 @@ class Subscription extends Component {
         <Button onClick={this.openLoginDialog} disabled={!this.canSubscribe()} variant="raised">Subscribe</Button>
         {this.state.showLoginDialog &&
           <LoginDialog onClose={this.closeLoginDialog} />}
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={this.state.showSuccessMessage}
-          onClose={this.closeSuccessMessage}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={
-          <span className="success">
-            <Icon className="success-icon">check</Icon>
-            <span className="success-message" id="message-id">You have been successfully subscribed to this docket</span>
-          </span>}
-        />
       </div>
     );
   }
 }
 
-export default withCourts(withUser(Subscription));
+export default withCourts(withUser(connect()(Subscription)));

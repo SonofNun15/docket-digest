@@ -1,0 +1,12 @@
+.snackbar {
+  display: flex;
+  flex-flow: row;
+}
+
+.snackbar-success {
+  color: #5de80d;
+}
+
+.snackbar-message {
+  margin: 0.25em;
+}
