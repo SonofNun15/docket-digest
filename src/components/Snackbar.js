@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Icon from '@material-ui/core/Icon';
-import { snackbarTypes, closeSnackbar } from '../services/snackbar/snackbar.action';
+import { snackbarTypes, closeSnackbar } from '../services/snackbar/snackbar.actions';
 import './Snackbar.css';
 
 const Test = ({ open, message, snackbarType, dispatchCloseSnackbar }) => (

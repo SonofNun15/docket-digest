@@ -1,5 +1,5 @@
 import { snackbar } from './snackbar.reducer';
-import { openSnackbar, closeSnackbar } from './snackbar.action';
+import { openSnackbar, closeSnackbar } from './snackbar.actions';
 
 describe('snackbar.reducer', () => {
   it('should change the state to open with the given message and type', () => {

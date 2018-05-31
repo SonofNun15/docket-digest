@@ -1,4 +1,4 @@
-import { OPEN_SNACKBAR, CLOSE_SNACKBAR } from './snackbar.action';
+import { OPEN_SNACKBAR, CLOSE_SNACKBAR } from './snackbar.actions';
 
 const initialState = {
   open: false,
