@@ -34,7 +34,7 @@ class LoginDialog extends React.Component {
     event.preventDefault();
 
     if (regVis) {
-      if (password != confirmPassword) {
+      if (password !== confirmPassword) {
         this.setState({ passwordWarning: 'The passwords do not match!' });
       } else {
         this.props.dispatch(closeDialog());
@@ -149,7 +149,6 @@ class LoginDialog extends React.Component {
   };
 
   render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
     const { regVis } = this.state;
 
     return (

@@ -7,8 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Snackbar from '@material-ui/core/Snackbar';
-import Icon from '@material-ui/core/Icon';
 import Autocomplete from '../components/Autocomplete';
 import LoginDialog from '../components/LoginDialog';
 

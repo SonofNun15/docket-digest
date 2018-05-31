@@ -1,4 +1,3 @@
-import React from 'react';
 import { OPEN_DIALOG, CLOSE_DIALOG } from './dialog.actions';
 
 const initialState = {
