@@ -15,7 +15,7 @@ import LoginDialog from '../components/LoginDialog';
 import { withCourts } from './withCourts';
 import { withUser } from '../helpers/WithUser';
 import Api from '../services/api';
-import { openSnackbar, snackbarTypes } from '../services/snackbar.action';
+import { openSnackbar, snackbarTypes } from '../services/snackbar/snackbar.action';
 
 import './Subscription.css';
 
