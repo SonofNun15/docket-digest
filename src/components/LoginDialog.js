@@ -154,7 +154,7 @@ class LoginDialog extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <DialogTitle id="login-dialog">
+        <DialogTitle id="dialog">
           {regVis ? "Create Account" : "User Login"}
         </DialogTitle>
         {this.renderLoginContent()}
