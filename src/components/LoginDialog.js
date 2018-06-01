@@ -30,6 +30,7 @@ class LoginDialog extends React.Component {
 
   handleSubmit = (event) => {
     const { email, password, confirmPassword, name, regVis } = this.state;
+    const { dispatch, onSuccess } = this.props;
 
     event.preventDefault();
 
@@ -37,19 +38,19 @@ class LoginDialog extends React.Component {
       if (password !== confirmPassword) {
         this.setState({ passwordWarning: 'The passwords do not match!' });
       } else {
-        this.props.dispatch(closeDialog());
+        dispatch(closeDialog());
         api.register(name, email, password)
           .then(user => {
             update(user);
-            this.props.onSuccess();
+            onSuccess();
           });
       }
     } else {
-      this.props.dispatch(closeDialog());
+      dispatch(closeDialog());
       api.login(email, password)
         .then(user => {
           update(user);
-          this.props.onSuccess();
+          onSuccess();
         });
     }
   };
