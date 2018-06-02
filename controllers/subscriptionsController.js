@@ -38,4 +38,17 @@ module.exports = {
       res.json({ hello: 'world' });
     }).catch(err => console.log('find err', err));
   },
+
+  list: function(req, res) {
+    db.User.findOne({ _id: req.user._id })
+      .then(user => {
+        res.json({
+          subscriptions: user.subscriptions,
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(401);
+      });
+  },
 };

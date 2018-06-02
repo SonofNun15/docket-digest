@@ -3,6 +3,7 @@ const subscriptionsController = require("../../controllers/subscriptionsControll
 
 router
   .route('/')
+  .get(subscriptionsController.list)
   .post(subscriptionsController.subscribe);
 
 module.exports = router;
