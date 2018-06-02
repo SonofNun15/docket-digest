@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import Header from './navigation/Header';
+import Snackbar from './components/Snackbar';
+import Dialog from './components/Dialog';
 
 import MainContainer from './pages/MainContainer';
 import About from './pages/About';
@@ -40,6 +42,8 @@ class App extends Component {
           <Route exact path="/" component={MainContainer} />
           <Route path="/About" component={About} />
           <Route path="/Help" component={Help} />
+          <Snackbar/>
+          <Dialog/>
         </div>
       </Router>
     );
