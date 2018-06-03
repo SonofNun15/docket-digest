@@ -2,29 +2,31 @@ module.exports = function (sequelize, DataTypes) {
 
   const User = sequelize.define("User",
     {
-      email: DataTypes.STRING,
-      unique: true,
-      allowNull: false
-    },
-    {
-      name: DataTypes.STRING,
-      allowNull: false
-    },
-    {
-      salt: DataTypes.STRING,
-      allowNull: false
-    },
-    {
-      hash: DataTypes.STRING,
-      allowNull: false
-    },
-    {
-      reset_token: DataTypes.STRING,
-      defaultValue: null
-    },
-    {
-      reset_token_expires_at: DataTypes.DATE,
-      defaultValue: null
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      salt: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      hash: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      reset_token: {
+        type: DataTypes.STRING,
+        defaultValue: null
+      },
+      reset_token_expires_at: {
+        type: DataTypes.DATE,
+        defaultValue: null
+      },
     },
     {
       timestamps: true
