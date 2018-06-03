@@ -16,6 +16,8 @@ import './Account.css';
 class Account extends Component {
   state = {
     anchorEl: null,
+    username: '',
+    email: ''
   };
 
   handleClick = event => {
@@ -24,13 +26,17 @@ class Account extends Component {
 
   handleAccount = () => {
     const { history, location } = this.props;
+    const { email } = this.state;
 
     this.close();
 
-    const destination = '/account';
+    const destination = '/ManageAccount';
 
     if (location.pathname !== destination) {
-      history.push(destination);
+      history.push({
+        pathname: destination,
+        email: email
+      });
     }
   };
 
@@ -47,6 +53,7 @@ class Account extends Component {
 
   render() {
     const { user } = this.props;
+    this.state.email = user.username;
 
     if (user == null) {
       return <div />
