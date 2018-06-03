@@ -26,7 +26,6 @@ class Account extends Component {
 
   handleAccount = () => {
     const { history, location } = this.props;
-    const { email } = this.state;
 
     this.close();
 
@@ -35,7 +34,7 @@ class Account extends Component {
     if (location.pathname !== destination) {
       history.push({
         pathname: destination,
-        email: email
+        email: this.props.user.username
       });
     }
   };
@@ -53,7 +52,6 @@ class Account extends Component {
 
   render() {
     const { user } = this.props;
-    this.state.email = user.username;
 
     if (user == null) {
       return <div />
