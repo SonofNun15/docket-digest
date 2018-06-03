@@ -20,7 +20,8 @@ module.exports = function (sequelize, DataTypes) {
             },
         },
         {
-            timestamps: true
+            timestamps: true,
+            underscored:true
         }
     );
 

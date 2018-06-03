@@ -29,14 +29,15 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
     {
-      timestamps: true
+      timestamps: true,
+      underscored: true
     }
   );
 
   User.associate = function (models) {
     // Associating User with userdockets
     // When an User is deleted, also delete any associated userdockets
-    User.hasMany(models.User_Docket, {
+    User.hasMany(models.Users_Docket, {
       onDelete: "cascade"
     });
   };

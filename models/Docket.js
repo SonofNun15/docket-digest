@@ -12,12 +12,13 @@ module.exports = function (sequelize, DataTypes) {
             },
         },
         {
-            timestamps: true
+            timestamps: true,
+            underscored: true
         }
     );
 
     Docket.associate = function (models) {
-        Docket.hasMany(models.User_Docket, {
+        Docket.hasMany(models.Users_Docket, {
             onDelete: "cascade"
         });
         Docket.hasMany(models.Filing, {
