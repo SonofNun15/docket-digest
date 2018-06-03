@@ -12,6 +12,7 @@ header.app-header li {
   display: inline-block;
   font-size: 0.8rem;
   padding: 10px;
+  vertical-align: top;
 }
 
 header.app-header a {
@@ -25,4 +26,8 @@ header.app-header a {
   margin-right: 26px;
   padding: 10px;
   cursor: pointer;
+}
+
+.logoIcon {
+  padding: 0px;
 }

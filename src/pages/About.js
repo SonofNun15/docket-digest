@@ -6,11 +6,6 @@ import logo from '../assets/logo.svg';
 const About = () => {
   return (
     <div className="image-center">
-      <header>
-        <Link to="/">
-          <img src={logo} width="320" alt="Docket Digest" />
-        </Link>
-      </header>
       <div className="text-container narrow">
         <p className="text">
           Docket Digest was developed to provide instant open access to public legal material.
