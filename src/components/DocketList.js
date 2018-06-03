@@ -33,7 +33,7 @@ class DocketList extends Component {
     let strDock = docket.number + ', court: ' + docket.court;
     if (window.confirm("Do you want to delete docket: " + strDock))
     {
-      let newList = this.state.dList;
+      let newList = this.state.dList.slice();
       let index = newList.indexOf(docket);
       if (index != -1) {
         newList.splice(index, 1);
