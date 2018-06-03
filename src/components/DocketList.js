@@ -29,7 +29,17 @@ class DocketList extends Component {
   }
 
   deleteSubscription = (docket) => {
-    alert('Deleting docket: ' + docket.number + ', court: ' + docket.court);
+    //alert('Deleting docket: ' + docket.number + ', court: ' + docket.court);
+    let strDock = docket.number + ', court: ' + docket.court;
+    if (window.confirm("Do you want to delete docket: " + strDock))
+    {
+      let newList = this.state.dList;
+      let index = newList.indexOf(docket);
+      if (index != -1) {
+        newList.splice(index, 1);
+      }
+      this.setState({ dList : newList });
+    }
   };
 
   generate = () => {
