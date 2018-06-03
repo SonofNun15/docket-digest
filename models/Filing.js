@@ -1,37 +1,32 @@
-const mongoose = require("mongoose");
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+module.exports = function (sequelize, DataTypes) {
 
+    const Filing = sequelize.define("Filing",
+        {
+            description: DataTypes.STRING,
+            allowNull: false
+        },
+        {
+            url: DataTypes.STRING,
+            allowNull: false
+        },
+        {
+            document_url: DataTypes.STRING,
+            allowNull: false
+        },
+        {
+            published_at: DataTypes.DATE,
+            allowNull: false
+        },
+        {
+            timestamps: true
+        }
+    );
 
-const FilingSchema = new Schema({
+    Filing.associate = function (models) {
+        Filing.belongsTo(models.Docket,{
+            as:"docket_id"
+        });
+    };
 
-    document_url: {
-        type: String,
-    },
-
-    docket_url: {
-        type:String,
-    },
-
-    description: {
-        type: String,
-        required: true
-    },
-
-    created_at: {
-        type: Date,
-        default: Date.now
-    },
-
-    published_at: {
-        type: Date,
-        required: true
-    }
-
-});
-
-// This creates our model from the above schema, using mongoose's model method
-const Filing = mongoose.model("Filing", FilingSchema);
-
-// Export the User model
-module.exports = Filing;
+    return Filing;
+};

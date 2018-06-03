@@ -1,31 +1,25 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function (sequelize, DataTypes) {
 
-const CourtSchema = new Schema({
-  identifier: {
-    type: String,
-    // unique: true,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  docket_identifiers: [
-    {
-      type: String,
-    }
-  ],
-  created_at: {
-    type: Date,
-    default: Date.now,
-  },
-  updated_at: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  const Court = sequelize.define("Court",
+      {
+          identifier: DataTypes.STRING,
+          allowNull: false
+      },
+      {
+          rss: DataTypes.STRING,
+          allowNull: false
+      },
+      {
+          timestamps: true
+      }
+  );
 
-const Court = mongoose.model("Court", CourtSchema);
+  Court.associate = function (models) {
+      Court.belongsTo(models.Court_Category,{
+        as:"court_category_id"
+      });
+      Court.hasMany(models.Docket);
+  };
 
-module.exports = Court;
+  return Court;
+};

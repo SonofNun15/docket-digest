@@ -1,46 +1,30 @@
-const mongoose = require("mongoose");
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+module.exports = function (sequelize, DataTypes) {
 
-
-const DocketSchema = new Schema({
-
-    docket_number: {
-        type: String,
-        required: true,
-    },
-
-    docket_url: {
-        type: String,
-        required: true,
-    },
-
-    title: {
-        type: String,
-        required: true,
-    },
-
-    created_at: {
-        type: Date,
-        default: Date.now,
-    },
-
-    updated_at: {
-        type: Date,
-        default: Date.now,
-    },
-
-    filings: [
+    const Docket = sequelize.define("Docket",
         {
-            type: Schema.Types.ObjectId,
-            ref: "Filing"
+            identifier: DataTypes.STRING,
+            allowNull: false
+        },
+        {
+            url: DataTypes.STRING,
+            allowNull: false 
+        },
+        {
+            timestamps: true
         }
-    ]
+    );
 
-});
+    Docket.associate = function (models) {
+        Docket.belongsTo(models.Court,{
+            as:"court_id"
+        });
+        Docket.hasMany(models.User_Docket, {
+            onDelete: "cascade"
+        });
+        Docket.hasMany(models.Filing, {
+            onDelete: "cascade"
+        });
+    };
 
-// This creates our model from the above schema, using mongoose's model method
-const Docket = mongoose.model("Docket", DocketSchema);
-
-// Export the User model
-module.exports = Docket;
+    return Docket;
+};

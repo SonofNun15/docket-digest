@@ -1,33 +1,43 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require('passport-local-mongoose');
-// Save a reference to the Schema constructor
-const Schema = mongoose.Schema;
+module.exports = function (sequelize, DataTypes) {
 
+  const User = sequelize.define("User",
+    {
+      email: DataTypes.STRING,
+      unique: true,
+      allowNull: false
+    },
+    {
+      name: DataTypes.STRING,
+      allowNull: false
+    },
+    {
+      salt: DataTypes.STRING,
+      allowNull: false
+    },
+    {
+      hash: DataTypes.STRING,
+      allowNull: false
+    },
+    {
+      reset_token: DataTypes.STRING,
+      defaultValue: null
+    },
+    {
+      reset_token_expires_at: DataTypes.DATE,
+      defaultValue: null
+    },
+    {
+      timestamps: true
+    }
+  );
 
-const UserSchema = new Schema({
+  User.associate = function (models) {
+    // Associating User with userdockets
+    // When an User is deleted, also delete any associated userdockets
+    User.hasMany(models.User_Docket, {
+      onDelete: "cascade"
+    });
+  };
 
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-    trim: true,
-    lowercase: true,
-  },
-
-  name: {
-    type:String
-  },
-  
-  subscriptions: [{
-    type: String
-  }]
-
-});
-
-UserSchema.plugin(passportLocalMongoose);
-
-// This creates our model from the above schema, using mongoose's model method
-const User = mongoose.model("User", UserSchema);
-
-// Export the User model
-module.exports = User;
+  return User;
+};
