@@ -3,6 +3,10 @@ const subscriptionsController = require("../../controllers/subscriptionsControll
 
 router
   .route('/')
+  .get(subscriptionsController.getSubscriptions)
   .post(subscriptionsController.subscribe);
 
+router
+  .route('/:docket_identifier')
+  .delete(subscriptionsController.unsubscribe);
 module.exports = router;
