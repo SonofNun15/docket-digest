@@ -106,8 +106,4 @@ class DocketList extends Component {
   }
 }
 
-DocketList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
 export default DocketList;
