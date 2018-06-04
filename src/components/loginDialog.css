@@ -23,3 +23,8 @@
 .loginContent .regButton {
   text-transform: none;
 }
+
+.loginContent .forgot-password {
+  text-transform: none;
+  margin-top: 15px;
+}
