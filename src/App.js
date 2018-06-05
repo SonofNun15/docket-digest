@@ -41,9 +41,9 @@ class App extends Component {
         <div className="App">
           <Header user={user} />
           <Route exact path="/" component={MainContainer} />
-          <Route path="/About" component={About} />
-          <Route path="/Help" component={Help} />
-          <Route path="/ManageAccount" component={ManageAccount} />
+          <Route path="/about" component={About} />
+          <Route path="/help" component={Help} />
+          <Route path="/account" component={ManageAccount} />
           <Snackbar/>
           <Dialog/>
         </div>

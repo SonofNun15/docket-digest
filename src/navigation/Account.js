@@ -29,7 +29,7 @@ class Account extends Component {
 
     this.close();
 
-    const destination = '/ManageAccount';
+    const destination = '/account';
 
     if (location.pathname !== destination) {
       history.push({

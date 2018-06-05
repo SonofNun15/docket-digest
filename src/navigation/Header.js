@@ -30,8 +30,8 @@ class Header extends Component {
           <Link to="/" className="logoIcon">
             <img src="favicon.ico" alt="Docket Digest" />
           </Link>
-          <li><Link to="/About">About</Link></li>
-          <li><Link to="/Help">Help</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/help">Help</Link></li>
         </ul>
         {this.renderLoginOrAccountLink()}
       </header>
