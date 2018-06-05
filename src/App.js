@@ -12,6 +12,7 @@ import Dialog from './components/Dialog';
 import MainContainer from './pages/MainContainer';
 import About from './pages/About';
 import Help from './pages/Help';
+import PasswordRecovery from './pages/PasswordRecovery';
 
 import { update, withUser } from './helpers/WithUser';
 
@@ -42,6 +43,7 @@ class App extends Component {
           <Route exact path="/" component={MainContainer} />
           <Route path="/About" component={About} />
           <Route path="/Help" component={Help} />
+          <Route path="/password-recovery/:token" component={PasswordRecovery} />
           <Snackbar/>
           <Dialog/>
         </div>
