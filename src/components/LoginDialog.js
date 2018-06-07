@@ -18,6 +18,7 @@ class LoginDialog extends React.Component {
     confirmPassword: '',
     name: '',
     regVis: false,
+    passwordResetVis: false,
   };
 
   static defaultProps = {
@@ -29,10 +30,16 @@ class LoginDialog extends React.Component {
   };
 
   handleSubmit = (event) => {
-    const { email, password, confirmPassword, name, regVis } = this.state;
+    const { email, password, confirmPassword, name, regVis, passwordResetVis } = this.state;
     const { dispatch, onSuccess } = this.props;
 
     event.preventDefault();
+
+    if (passwordResetVis) {
+      console.log(email);
+      dispatch(closeDialog());
+      return;
+    }
 
     if (regVis) {
       if (password !== confirmPassword) {
@@ -60,12 +67,35 @@ class LoginDialog extends React.Component {
     this.setState({ regVis: !regVis });
   };
 
+  handleForgotPassword = () => {
+    this.setState({ passwordResetVis: true });
+  };
+
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   renderLoginContent() {
-    const { regVis, email, password, name, confirmPassword, passwordWarning } = this.state;
+    const { regVis, passwordResetVis, email, password, name, confirmPassword, passwordWarning } = this.state;
+    
+    if (passwordResetVis) {
+      return (
+        <DialogContent className="loginContent">
+          <TextField
+            autoFocus
+            margin="dense"
+            id="email"
+            name="email"
+            value={email}
+            label="Email Address"
+            type="email"
+            fullWidth
+            onChange={this.onChange}
+          />
+        </DialogContent>
+      );
+    }
+    
     if (regVis) {
       return (
         <DialogContent>
@@ -144,19 +174,25 @@ class LoginDialog extends React.Component {
             fullWidth
             onChange={this.onChange}
           />
+          <Button onClick={this.handleForgotPassword} className="forgot-password">Forgot password?</Button>
         </DialogContent>
       )
     }
   };
 
   render() {
-    const { regVis } = this.state;
+    const { regVis, passwordResetVis } = this.state;
+
+    let header;
+    if (passwordResetVis) {
+      header = "Reset Password";
+    } else {
+      header = regVis ? "Create Account" : "User Login";
+    }
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <DialogTitle id="dialog">
-          {regVis ? "Create Account" : "User Login"}
-        </DialogTitle>
+        <DialogTitle id="dialog">{header}</DialogTitle>
         {this.renderLoginContent()}
         <DialogActions>
           <Button onClick={this.handleClose} color="primary">
