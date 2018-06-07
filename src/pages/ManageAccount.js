@@ -9,6 +9,21 @@ import DocketList from '../components/DocketList.js';
 import './ManageAccount.css';
 
 class ManageAccount extends Component {
+  state = {
+    dirty: false,
+    newName: "My Name",
+    newEmail: this.props.location.email
+  };
+
+  onChangeName = (event) => {
+    this.setState({ dirty : true });
+    this.setState({ newName: event.target.value })
+  };
+
+  onChangeEmail = (event) => {
+    this.setState({ dirty : true });
+    this.setState({ newEmail: event.target.value });
+  };
 
   render() {
 
@@ -19,10 +34,11 @@ class ManageAccount extends Component {
           margin="dense"
           id="name"
           name="name"
-          value='My Name'
+          value={this.state.newName}
           label="Name"
           type="name"
           style={{width: 450}}
+          onChange={this.onChangeName}
         />
         <br/>
         <TextField
@@ -30,13 +46,14 @@ class ManageAccount extends Component {
           margin="dense"
           id="email"
           name="email"
-          value={this.props.location.email}
+          value={this.state.newEmail}
           label="Email Address"
           type="email"
           style={{width: 450}}
+          onChange={this.onChangeEmail}
         />
         <br/><br/>
-        <Button variant="raised">Save</Button>
+        <Button variant="raised" disabled={!this.state.dirty}>Save</Button>
         <br/><br/>
         <Button variant="raised">Change Password</Button>
         <br/><br/>
