@@ -16,6 +16,8 @@ import './Account.css';
 class Account extends Component {
   state = {
     anchorEl: null,
+    username: '',
+    email: ''
   };
 
   handleClick = event => {
@@ -30,7 +32,10 @@ class Account extends Component {
     const destination = '/account';
 
     if (location.pathname !== destination) {
-      history.push(destination);
+      history.push({
+        pathname: destination,
+        email: this.props.user.username
+      });
     }
   };
 
