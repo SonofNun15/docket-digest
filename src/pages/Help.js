@@ -17,11 +17,6 @@ import questions from './questions';
 const Help = () => {
   return (
     <div className="image-center">
-      <header>
-        <Link to="/">
-          <img src={logo} width="320" alt="Docket Digest" />
-        </Link>
-      </header>
       <div className="text-container wide">
         {questions.map(renderQuestion)}
       </div>
