@@ -40,11 +40,17 @@ class Account extends Component {
   };
 
   handleLogout = () => {
+    const { history } = this.props;
+    
     api.logout();
     update(null);
 
     this.close();
-  };
+    
+    history.push({
+      pathname: '/'
+    });
+};
 
   close = () => {
     this.setState({ anchorEl: null });
