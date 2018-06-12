@@ -36,11 +36,11 @@ class DocketList extends Component {
 
   fillDocketList = (data) => {
     let newList = new Array();
-    let i;
-    for (i=0; i<data.length; i++) {
-      newList.push({ number: data[i], court: 'U.S. District Courts: Ohio Northern'});
-    }
-    // data.foreach (el => newList.push ({ number: {el}, court: 'U.S. District Courts: Alabama Middle'}));
+    // let i;
+    // for (i=0; i<data.length; i++) {
+    //   newList.push({ number: data[i], court: 'U.S. District Courts: Ohio Northern'});
+    // }
+    data.forEach (elem => newList.push ({ number: elem, court: 'U.S. District Courts: Alabama Middle'}));
     this.setState({ dList : newList });
   };
 
