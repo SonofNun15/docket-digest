@@ -16,13 +16,17 @@ class ManageAccount extends Component {
   };
 
   onChangeName = (event) => {
-    this.setState({ dirty : true });
-    this.setState({ newName: event.target.value })
+    this.setState({
+      dirty: true,
+      newName: event.target.value
+    });
   };
 
   onChangeEmail = (event) => {
-    this.setState({ dirty : true });
-    this.setState({ newEmail: event.target.value });
+    this.setState({
+      dirty: true,
+      newEmail: event.target.value
+    });
   };
 
   render() {
