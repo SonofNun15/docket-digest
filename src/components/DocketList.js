@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Api from '../services/api';
 
 class DocketList extends Component {
   state = {
@@ -20,13 +21,31 @@ class DocketList extends Component {
 
   constructor() {
     super();
+    // this.state.dList = new Array();
+    // this.state.dList[0] = { number: 'docket 1', court: 'U.S. District Courts: Alabama Middle'};
+    // this.state.dList[1] = { number: 'docket 2', court: 'U.S. District Courts: Alabama Middle'};
+    // this.state.dList[2] = { number: 'docket 3', court: 'U.S. District Courts: Alabama Middle'};
+    // this.state.dList[3] = { number: 'docket 4', court: 'U.S. District Courts: Alabama Middle'};
+    // this.state.dList[4] = { number: 'docket 5', court: 'U.S. District Courts: Alabama Middle'};
+
     this.state.dList = new Array();
-    this.state.dList[0] = { number: 'docket 1', court: 'U.S. District Courts: Alabama Middle'};
-    this.state.dList[1] = { number: 'docket 2', court: 'U.S. District Courts: Alabama Middle'};
-    this.state.dList[2] = { number: 'docket 3', court: 'U.S. District Courts: Alabama Middle'};
-    this.state.dList[3] = { number: 'docket 4', court: 'U.S. District Courts: Alabama Middle'};
-    this.state.dList[4] = { number: 'docket 5', court: 'U.S. District Courts: Alabama Middle'};
-  }
+    this.request = Api.getSubscriptions()
+      .then(data => this.fillDocketList(data))
+      .catch(err => this.handleDocketListErr(err));
+  };
+
+  fillDocketList = (data) => {
+    let newList = new Array();
+    let i;
+    for (i=0; i<data.length; i++) {
+      newList.push({ number: data[i], court: 'U.S. District Courts: Ohio Northern'});
+    }
+    // data.foreach (el => newList.push ({ number: {el}, court: 'U.S. District Courts: Alabama Middle'}));
+    this.setState({ dList : newList });
+  };
+
+  handleDocketListErr = (err) => {
+  };
 
   deleteSubscription = (docket) => {
     //alert('Deleting docket: ' + docket.number + ', court: ' + docket.court);

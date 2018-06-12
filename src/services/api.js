@@ -26,6 +26,11 @@ class Api {
       docket_identifier: docketNumber,
     });
   }
+
+  getSubscriptions() {
+    return axios.get('/api/subscriptions')
+      .then(result => result.data);
+  }
 }
 
 export default new Api();
